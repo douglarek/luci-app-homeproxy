@@ -120,7 +120,7 @@ function generate_outbound(node) {
 
 	const outbound = {
 		type: node.type,
-		tag: 'cfg-' + node['.name'] + '-out',
+		tag: node.label,
 		routing_mark: strToInt(self_mark),
 
 		server: node.address,
@@ -249,8 +249,12 @@ function get_outbound(cfg) {
 		const node = uci.get(uciconfig, cfg, 'node');
 		if (isEmpty(node))
 			die(sprintf("%s's node is missing, please check your configuration.", cfg));
-		else
-			return 'cfg-' + node + '-out';
+		else {
+			const label = uci.get(uciconfig, node, 'label');
+			if (isEmpty(label))
+				die(sprintf("%s's label is missing, please check your configuration.", node));
+			return label;
+		}
 	}
 }
 
