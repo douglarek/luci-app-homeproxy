@@ -398,6 +398,12 @@ return view.extend({
 		var m, s, o, ss, so;
 		var main_node = uci.get(data[0], 'config', 'main_node');
 		var routing_mode = uci.get(data[0], 'config', 'routing_mode');
+		var proxy_nodes = {};
+		uci.sections(data[0], 'node', (res) => {
+			proxy_nodes[res['.name']] =
+				String.format('[%s] %s', res.type, res.label || (stubValidator.apply('ip6addr', res.address || '') ?
+					String.format('[%s]', res.address) : res.address) + ':' + res.port);
+		});
 		var features = data[1];
 
 		m = new form.Map('homeproxy', _('Edit nodes'));
@@ -552,16 +558,17 @@ return view.extend({
 			so.value('wireguard', _('WireGuard'));
 		so.value('vless', _('VLESS'));
 		so.value('vmess', _('VMess'));
+		so.value('selector', _('Selector'));
 		so.rmempty = false;
 
 		so = ss.option(form.Value, 'address', _('Address'));
 		so.datatype = 'host';
-		so.depends({'type': 'direct', '!reverse': true});
+		so.depends({'type': /^(direct|selector)$/, '!reverse': true});
 		so.rmempty = false;
 
 		so = ss.option(form.Value, 'port', _('Port'));
 		so.datatype = 'port';
-		so.depends({'type': 'direct', '!reverse': true});
+		so.depends({'type': /^(direct|selector)$/, '!reverse': true});
 		so.rmempty = false;
 
 		so = ss.option(form.Value, 'username', _('Username'));
@@ -908,6 +915,24 @@ return view.extend({
 		so.depends('type', 'vmess');
 		so.modalonly = true;
 		/* VMess config end */
+
+		/* Selector config start */
+		so = ss.option(form.MultiValue, 'selector_outbounds', _('Outbounds'),
+			_('List of outbound tags to select.'));
+		for (var i in proxy_nodes)
+			so.value(i, proxy_nodes[i]);
+		so.depends('type', 'selector');
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'selector_default', _('Default outbound'),
+			_('The default outbound tag. The first outbound will be used if empty.'));
+		so.value('', _('Default'));
+		for (var i in proxy_nodes)
+			so.value(i, proxy_nodes[i]);
+		so.default = '';
+		so.depends('type', 'selector');
+		so.modalonly = true;
+		/* Selector config end */
 
 		/* Transport config start */
 		so = ss.option(form.ListValue, 'transport', _('Transport'),
@@ -1275,15 +1300,18 @@ return view.extend({
 		/* Extra settings start */
 		so = ss.option(form.Flag, 'tcp_fast_open', _('TCP fast open'));
 		so.default = so.disabled;
+		so.depends({'type': 'selector', '!reverse': true});
 		so.modalonly = true;
 
 		so = ss.option(form.Flag, 'tcp_multi_path', _('Enable TCP Multi Path'));
 		so.default = so.disabled;
+		so.depends({'type': 'selector', '!reverse': true});
 		so.modalonly = true;
 
 		so = ss.option(form.Flag, 'udp_fragment', _('UDP Fragment'),
 			_('Enable UDP fragmentation.'));
 		so.default = so.disabled;
+		so.depends({'type': 'selector', '!reverse': true});
 		so.modalonly = true;
 
 		so = ss.option(form.Flag, 'udp_over_tcp', _('UDP over TCP'),

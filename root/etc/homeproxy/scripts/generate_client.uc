@@ -118,6 +118,18 @@ function generate_outbound(node) {
 	if (type(node) !== 'object' || isEmpty(node))
 		return null;
 
+	if (node.type === 'selector') {
+		let outbounds = [];
+		for (let outbound in node.selector_outbounds)
+			push(outbounds, uci.get(uciconfig, outbound, 'label'));
+		return {
+			type: node.type,
+			tag: node.label,
+			outbounds: outbounds,
+			default: node.selector_default
+		};
+	}
+
 	const outbound = {
 		type: node.type,
 		tag: node.label,
@@ -368,6 +380,15 @@ if (!isEmpty(main_node)) {
 	});
 
 	/* DNS rules */
+	let domains = [];
+	uci.foreach(uciconfig, ucinode, (cfg) => {
+                if (cfg.type !=='selector' && validateHostname(cfg.address))
+			push(domains, cfg.address);
+	});
+	push(config.dns.rules, {
+		domain: domains,
+		server: 'default-dns'
+	});
 	uci.foreach(uciconfig, ucidnsrule, (cfg) => {
 		if (cfg.enabled !== '1')
 			return;
@@ -482,16 +503,10 @@ if (!isEmpty(main_node)) {
 		config.outbounds[length(config.outbounds)-1].tag = 'main-udp-out';
 	}
 } else if (!isEmpty(default_outbound))
-	uci.foreach(uciconfig, uciroutingnode, (cfg) => {
-		if (cfg.enabled !== '1')
-			return;
-
-		const outbound = uci.get_all(uciconfig, cfg.node) || {};
-		push(config.outbounds, generate_outbound(outbound));
-		config.outbounds[length(config.outbounds)-1].domain_strategy = cfg.domain_strategy;
-		config.outbounds[length(config.outbounds)-1].bind_interface = cfg.bind_interface;
-		config.outbounds[length(config.outbounds)-1].detour = get_outbound(cfg.outbound);
-	});
+       uci.foreach(uciconfig, ucinode, (cfg) => {
+               let outbound = generate_outbound(cfg);
+               push(config.outbounds, outbound);
+       });
 /* Outbound end */
 
 /* Routing rules start */
