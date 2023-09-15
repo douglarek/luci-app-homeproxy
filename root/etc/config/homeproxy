@@ -16,6 +16,7 @@ config homeproxy 'infra'
 	option tun_mark '102'
 
 config homeproxy 'config'
+	option clash_dashboard_port '9090'
 	option main_node 'nil'
 	option main_udp_node 'same'
 	option dns_server '208.67.222.222'
