@@ -131,7 +131,8 @@ function generate_outbound(node) {
 			/* URLTest */
 			url: node.urltest_url,
 			interval: node.urltest_interval,
-			tolerance: strToInt(node.urltest_tolerance)
+			tolerance: strToInt(node.urltest_tolerance),
+			interrupt_exist_connections: strToBool(node_interrupt_exist_connections)
 		};
 	}
 

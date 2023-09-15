@@ -956,6 +956,13 @@ return view.extend({
 		so.datatype = 'uinteger';
 		so.depends('type', 'urltest');
 		so.modalonly = true;
+
+		so = ss.option(form.Flag, 'node_interrupt_exist_connections', _('Interrupt existing connections'),
+			_('Interrupt existing connections when the selected outbound has changed.'));
+		so.default = so.disabled;
+		so.depends('type', 'selector');
+		so.depends('type', 'urltest');
+		so.modalonly = true;
 		/* URLTest config end */
 
 		/* Transport config start */
