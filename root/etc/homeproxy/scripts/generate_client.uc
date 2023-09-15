@@ -132,7 +132,7 @@ function generate_outbound(node) {
 			url: node.urltest_url,
 			interval: node.urltest_interval,
 			tolerance: strToInt(node.urltest_tolerance),
-			interrupt_exist_connections: strToBool(node_interrupt_exist_connections)
+			interrupt_exist_connections: strToBool(node.node_interrupt_exist_connections)
 		};
 	}
 
