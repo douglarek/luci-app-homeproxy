@@ -126,7 +126,7 @@ function generate_outbound(node) {
 			type: node.type,
 			tag: node.label,
 			outbounds: outbounds,
-			default: node.selector_default
+			default: uci.get(uciconfig, node.selector_default, 'label')
 		};
 	}
 
