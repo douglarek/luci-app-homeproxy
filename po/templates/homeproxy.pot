@@ -1300,7 +1300,7 @@ msgid "Only proxy mainland China"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:56
-msgid "Open Web Interface"
+msgid "Open clash dashboard"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:380

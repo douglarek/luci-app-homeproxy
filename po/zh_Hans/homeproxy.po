@@ -1326,8 +1326,8 @@ msgid "Only proxy mainland China"
 msgstr "仅代理中国大陆"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:56
-msgid "Open Web Interface"
-msgstr ""
+msgid "Open clash dashboard"
+msgstr "打开控制面板"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:380
 #: htdocs/luci-static/resources/view/homeproxy/client.js:541

@@ -53,7 +53,7 @@ function renderStatus(isRunning, port) {
 	var renderHTML;
 	if (isRunning) {
 		var button = String.format('&#160;<a class="btn cbi-button" href="http://%s:%s" target="_blank" rel="noreferrer noopener">%s</a>',
-			window.location.hostname, port, _('Open Web Interface'));
+			window.location.hostname, port, _('Open clash dashboard'));
 		renderHTML = spanTemp.format('green', _('HomeProxy'), _('RUNNING')) + button;
 	} else
 		renderHTML = spanTemp.format('red', _('HomeProxy'), _('NOT RUNNING'));
