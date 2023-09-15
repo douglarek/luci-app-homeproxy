@@ -946,11 +946,11 @@ msgstr "接口控制"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:960
 msgid "Interrupt existing connections"
-msgstr ""
+msgstr "中断现有连接"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:961
 msgid "Interrupt existing connections when the selected outbound has changed."
-msgstr ""
+msgstr "当选择的出站发生变化时中断现有连接。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:855
 #: htdocs/luci-static/resources/view/homeproxy/server.js:272
@@ -2460,6 +2460,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "QUIC traffic obfuscator type, only available with salamander"
-#~ msgstr "QUIC流量混淆器类型"
