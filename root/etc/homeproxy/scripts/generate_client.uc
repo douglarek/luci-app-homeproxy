@@ -387,7 +387,7 @@ if (!isEmpty(main_node)) {
 	/* DNS rules */
 	let domains = [];
 	uci.foreach(uciconfig, ucinode, (cfg) => {
-                if (cfg.type !=='selector' && validateHostname(cfg.address))
+                if (cfg.type !=='selector' && cfg.type !=='urltest' && validateHostname(cfg.address))
 			push(domains, cfg.address);
 	});
 	push(config.dns.rules, {
