@@ -311,7 +311,7 @@ msgstr "思科公共 DNS（208.67.222.222）"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:141
 msgid "Clash dashboard port"
-msgstr ""
+msgstr "面板端口"
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:165
 msgid "Clean log"
