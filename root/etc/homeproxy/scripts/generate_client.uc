@@ -46,6 +46,8 @@ else
 
 const dns_port = uci.get(uciconfig, uciinfra, 'dns_port') || '5333';
 
+const clash_dashboard_port = uci.get(uciconfig, ucimain, 'clash_dashboard_port') || '9090';
+
 let main_node, main_udp_node, dedicated_udp_node, default_outbound, sniff_override = '1',
     dns_server, dns_default_strategy, dns_default_server, dns_disable_cache, dns_disable_cache_expire,
     direct_domain_list;
@@ -300,7 +302,7 @@ config.log = {
 /* Clash dashboard */
 config.experimental = {
 	clash_api: {
-		external_controller: "0.0.0.0:9090",
+		external_controller: '[::]:'+ clash_dashboard_port,
 		external_ui: "/var/run/homeproxy/ui",
 		store_selected: true
 	}
