@@ -919,7 +919,7 @@ return view.extend({
 
 		/* Selector config start */
 		so = ss.option(form.MultiValue, 'node_outbounds', _('Outbounds'),
-			_('List of outbound tags to select.'));
+			_('List of outbound tags.'));
 		for (var i in proxy_nodes)
 			so.value(i, proxy_nodes[i]);
 		so.depends('type', 'selector');

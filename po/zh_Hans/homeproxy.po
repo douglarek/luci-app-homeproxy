@@ -1005,7 +1005,7 @@ msgid ""
 msgstr "分配给接口的 IP（v4 或 v6）地址前缀列表。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:922
-msgid "List of outbound tags to select."
+msgid "List of outbound tags."
 msgstr "选择要使用的出站标签列表。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1198
@@ -1923,7 +1923,7 @@ msgstr "用于接收数据的 QUIC 流级流控制窗口。"
 #: htdocs/luci-static/resources/view/homeproxy/node.js:941
 msgid ""
 "The URL to test. https://www.gstatic.com/generate_204 will be used if empty."
-msgstr ""
+msgstr "如果为空，则使用以下URL进行测试：https://www.gstatic.com/generate_204。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:607
 msgid "The address of the dns server. Support UDP, TCP, DoT, DoH and RCode."
@@ -2042,11 +2042,11 @@ msgstr "上游出站的标签。<br/>启用时，其他拨号字段将被忽略�
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:948
 msgid "The test interval. 1m will be used if empty."
-msgstr ""
+msgstr "测速间隔。如果为空，则使用1分钟。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:955
 msgid "The test tolerance in milliseconds. 50 will be used if empty."
-msgstr ""
+msgstr "测速容忍度，以毫秒为单位。如果为空，则使用50。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:995
 #: htdocs/luci-static/resources/view/homeproxy/server.js:377
@@ -2139,15 +2139,15 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:947
 msgid "URLTest interval"
-msgstr ""
+msgstr "测速间隔"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:954
 msgid "URLTest tolerance"
-msgstr ""
+msgstr "测速误差"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:940
 msgid "URLTest url"
-msgstr ""
+msgstr "测速地址"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:815
 #: htdocs/luci-static/resources/view/homeproxy/server.js:241

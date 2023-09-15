@@ -301,7 +301,6 @@ config.experimental = {
 	clash_api: {
 		external_controller: "0.0.0.0:9090",
 		external_ui: "/var/run/homeproxy/ui",
-		external_ui_download_url: "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
 		store_selected: true
 	}
 };
