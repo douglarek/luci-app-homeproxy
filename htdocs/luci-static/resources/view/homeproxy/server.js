@@ -277,7 +277,7 @@ return view.extend({
 		/* Tuic config end */
 
 		/* Hysteria2 config start */
-		o = s.option(form.Value, 'hysteria2_obfs_type', _('QUIC traffic obfuscator type, only available with salamander'));
+		o = s.option(form.Value, 'hysteria2_obfs_type', _('QUIC traffic obfuscator type'));
 		o.default = '';
 		o.depends('type', 'hysteria2');
 		o.modalonly = true;
