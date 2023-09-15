@@ -118,15 +118,20 @@ function generate_outbound(node) {
 	if (type(node) !== 'object' || isEmpty(node))
 		return null;
 
-	if (node.type === 'selector') {
+	if (node.type === 'selector' || node.type === 'urltest') {
 		let outbounds = [];
-		for (let outbound in node.selector_outbounds)
+		for (let outbound in node.node_outbounds)
 			push(outbounds, uci.get(uciconfig, outbound, 'label'));
 		return {
+			/* Selector */
 			type: node.type,
 			tag: node.label,
 			outbounds: outbounds,
-			default: uci.get(uciconfig, node.selector_default, 'label')
+			default: uci.get(uciconfig, node.selector_default, 'label'),
+			/* URLTest */
+			url: node.urltest_url,
+			interval: node.urltest_interval,
+			tolerance: node.urltest_tolerance
 		};
 	}
 

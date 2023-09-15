@@ -559,16 +559,17 @@ return view.extend({
 		so.value('vless', _('VLESS'));
 		so.value('vmess', _('VMess'));
 		so.value('selector', _('Selector'));
+		so.value('urltest', _('URLTest'));
 		so.rmempty = false;
 
 		so = ss.option(form.Value, 'address', _('Address'));
 		so.datatype = 'host';
-		so.depends({'type': /^(direct|selector)$/, '!reverse': true});
+		so.depends({'type': /^(direct|selector|urltest)$/, '!reverse': true});
 		so.rmempty = false;
 
 		so = ss.option(form.Value, 'port', _('Port'));
 		so.datatype = 'port';
-		so.depends({'type': /^(direct|selector)$/, '!reverse': true});
+		so.depends({'type': /^(direct|selector|urltest)$/, '!reverse': true});
 		so.rmempty = false;
 
 		so = ss.option(form.Value, 'username', _('Username'));
@@ -917,11 +918,12 @@ return view.extend({
 		/* VMess config end */
 
 		/* Selector config start */
-		so = ss.option(form.MultiValue, 'selector_outbounds', _('Outbounds'),
+		so = ss.option(form.MultiValue, 'node_outbounds', _('Outbounds'),
 			_('List of outbound tags to select.'));
 		for (var i in proxy_nodes)
 			so.value(i, proxy_nodes[i]);
 		so.depends('type', 'selector');
+		so.depends('type', 'urltest');
 		so.modalonly = true;
 
 		so = ss.option(form.Value, 'selector_default', _('Default outbound'),
@@ -933,6 +935,28 @@ return view.extend({
 		so.depends('type', 'selector');
 		so.modalonly = true;
 		/* Selector config end */
+
+		/* URLTest config start */
+		so = ss.option(form.Value, 'urltest_url', _('URLTest url'),
+			_('The URL to test. https://www.gstatic.com/generate_204 will be used if empty.'));
+		so.value('', _('Default'));
+		so.default = 'https://www.gstatic.com/generate_204';
+		so.depends('type', 'urltest');
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'urltest_interval', _('URLTest interval'),
+			_('The test interval. 1m will be used if empty.'));
+		so.value('', _('Default'));
+		so.default = '1m';
+		so.depends('type', 'urltest');
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'urltest_tolerance', _('URLTest tolerance'),
+			_('The test tolerance in milliseconds. 50 will be used if empty.'));
+		so.datatype = 'uinteger';
+		so.depends('type', 'urltest');
+		so.modalonly = true;
+		/* URLTest config end */
 
 		/* Transport config start */
 		so = ss.option(form.ListValue, 'transport', _('Transport'),
@@ -1300,18 +1324,18 @@ return view.extend({
 		/* Extra settings start */
 		so = ss.option(form.Flag, 'tcp_fast_open', _('TCP fast open'));
 		so.default = so.disabled;
-		so.depends({'type': 'selector', '!reverse': true});
+		so.depends({'type': /^(selector|urltest)$/, '!reverse': true});
 		so.modalonly = true;
 
 		so = ss.option(form.Flag, 'tcp_multi_path', _('Enable TCP Multi Path'));
 		so.default = so.disabled;
-		so.depends({'type': 'selector', '!reverse': true});
+		so.depends({'type': /^(selector|urltest)$/, '!reverse': true});
 		so.modalonly = true;
 
 		so = ss.option(form.Flag, 'udp_fragment', _('UDP Fragment'),
 			_('Enable UDP fragmentation.'));
 		so.default = so.disabled;
-		so.depends({'type': 'selector', '!reverse': true});
+		so.depends({'type': /^(selector|urltest)$/, '!reverse': true});
 		so.modalonly = true;
 
 		so = ss.option(form.Flag, 'udp_over_tcp', _('UDP over TCP'),
