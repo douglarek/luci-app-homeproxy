@@ -138,17 +138,6 @@ return view.extend({
 
 		s.tab('routing', _('Routing Settings'));
 
-		o = s.taboption('routing', form.Value, 'clash_dashboard_port', _('Clash dashboard port'));
-		o.value('', _('Default'));
-		o.value('9090', _('9090'));
-		o.default = '9090';
-		o.validate = function(section_id, value) {
-			if (section_id && value && !stubValidator.apply('port', value)) {
-				return _('Expecting: %s').format(_('valid port value'));
-			}
-			return true;
-		}
-
 		o = s.taboption('routing', form.ListValue, 'main_node', _('Main node'));
 		o.value('nil', _('Disable'));
 		for (var i in proxy_nodes)
@@ -984,6 +973,20 @@ return view.extend({
 		}
 		/* Direct domain list end */
 		/* ACL settings end */
+
+		/* Clash dashboard settings start */
+		s.tab('clash', _('Dashboard settings'));
+		o = s.taboption('clash', form.Value, 'clash_dashboard_port', _('Port'));
+		o.value('', _('Default'));
+		o.value('9090', _('9090'));
+		o.default = '9090';
+		o.validate = function(section_id, value) {
+			if (section_id && value && !stubValidator.apply('port', value)) {
+				return _('Expecting: %s').format(_('valid port value'));
+			}
+			return true;
+		}
+		/* Clash dashboard settings end */
 
 		return m.render();
 	}
