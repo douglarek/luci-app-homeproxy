@@ -894,7 +894,7 @@ return view.extend({
 		/* VMess config end */
 
 		/* Selector config start */
-		so = ss.option(form.MultiValue, 'node_outbounds', _('Outbounds'),
+		so = ss.option(form.DynamicList, 'node_outbounds', _('Outbounds'),
 			_('List of outbound tags.'));
 		for (var i in proxy_nodes)
 			so.value(i, proxy_nodes[i]);
