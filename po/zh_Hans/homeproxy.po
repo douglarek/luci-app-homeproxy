@@ -381,7 +381,7 @@ msgstr "DNS 服务器"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:978
 msgid "Dashboard settings"
-msgstr ""
+msgstr "控制面板"
 
 #: htdocs/luci-static/resources/homeproxy.js:17
 #: htdocs/luci-static/resources/view/homeproxy/client.js:437
