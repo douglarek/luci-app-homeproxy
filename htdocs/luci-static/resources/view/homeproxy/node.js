@@ -810,7 +810,6 @@ return view.extend({
 		so.value('', _('Default'));
 		so.value('native', _('Native'));
 		so.value('quic', _('QUIC'));
-		so.default = '';
 		so.depends('type', 'tuic');
 		so.modalonly = true;
 
