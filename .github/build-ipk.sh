@@ -14,7 +14,8 @@ function get_mk_value() {
 
 PKG_NAME="$(get_mk_value "PKG_NAME")"
 if [ "$RELEASE_TYPE" == "release" ]; then
-	PKG_VERSION="$(get_mk_value "PKG_VERSION")"
+	# PKG_VERSION="$(get_mk_value "PKG_VERSION")"
+	PKG_VERSION="release-$(git describe --tags $(git rev-list --tags --max-count=1))"
 else
 	PKG_VERSION="dev-$PKG_SOURCE_DATE_EPOCH-$(git rev-parse --short HEAD)"
 fi
