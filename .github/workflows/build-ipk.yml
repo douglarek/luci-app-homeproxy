@@ -58,7 +58,7 @@ jobs:
         uses: floralatin/upload-release-action@3688e13ae053ba3052eb4f0cfe03e78deb8f88d7
         if: github.event_name == 'release'
         with:
-          repo_token: ${{ github.token }}
+          repo_token: ${{ secrets.TOKEN }}
           file: .github/*.ipk
           tag: ${{ github.ref }}
           file_glob: true
