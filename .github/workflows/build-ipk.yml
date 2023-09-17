@@ -46,16 +46,6 @@ jobs:
           fakeroot bash build-ipk.sh
           echo "ASSET_NAME=$(ls *.ipk)" >> $GITHUB_ENV
           popd
-          ls -la .github
-
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "Snapshot build"
-          files: |
-            .github/*.ipk
 
       - name: Publishing to GitHub Artifacts
         uses: actions/upload-artifact@v3
