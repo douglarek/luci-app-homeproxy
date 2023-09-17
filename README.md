@@ -14,7 +14,7 @@
 下载地址
 ---
 
-* IPK [前往下载](https://github.com/douglarek/luci-app-homeproxy/actions/workflows/build-ipk.yml)
+* IPK [前往下载](https://github.com/douglarek/luci-app-homeproxy/releases)
 
 
 依赖
