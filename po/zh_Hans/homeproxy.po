@@ -315,11 +315,11 @@ msgstr "清空日志"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1007
 msgid "Clean up UI files"
-msgstr ""
+msgstr "清理 UI 文件"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:1008
 msgid "Clean up the previous UI files every time you start."
-msgstr ""
+msgstr "每次启动时清理上一次的 UI 文件。"
 
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:14
 msgid "Client Settings"
@@ -716,7 +716,7 @@ msgstr "外部账户绑定"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:990
 msgid "External UI download url"
-msgstr ""
+msgstr "外部 UI 下载地址"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:549
 msgid "External account MAC key"
