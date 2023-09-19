@@ -986,6 +986,28 @@ return view.extend({
 			}
 			return true;
 		}
+
+		o = s.taboption('clash', form.Value, 'clash_external_ui_download_url', _('External UI download url'));
+		o.value('', _('Default'));
+		o.value('https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip', _('yacd-meta'));
+		o.value('https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip', _('metacubexd'));
+		o.default = '';
+		o.validate = function(section_id, value) {
+			if (section_id && value) {
+				try {
+					new URL(value);
+				} catch (_) {
+					return _('Expecting: %s').format(_('valid url value'));
+				}
+			}
+			return true;
+		}
+
+
+		o = s.taboption('clash', form.Flag, 'clash_cleanup_ui_files', _('Clean up UI files'),
+			_('Clean up the previous UI files every time you start.'));
+		o.default = o.disabled;
+		o.rmempty = false;
 		/* Clash dashboard settings end */
 
 		return m.render();

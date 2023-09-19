@@ -46,7 +46,9 @@ else
 
 const dns_port = uci.get(uciconfig, uciinfra, 'dns_port') || '5333';
 
-const clash_dashboard_port = uci.get(uciconfig, ucimain, 'clash_dashboard_port') || '9090';
+const clash_dashboard_port = uci.get(uciconfig, ucimain, 'clash_dashboard_port') || '9090',
+	clash_external_ui_download_url = uci.get(uciconfig, ucimain, 'clash_external_ui_download_url'),
+	clash_cleanup_ui_files = uci.get(uciconfig, ucimain, 'clash_cleanup_ui_files');
 
 let main_node, main_udp_node, dedicated_udp_node, default_outbound, sniff_override = '1',
     dns_server, dns_default_strategy, dns_default_server, dns_disable_cache, dns_disable_cache_expire,
@@ -303,10 +305,15 @@ config.log = {
 config.experimental = {
 	clash_api: {
 		external_controller: '[::]:'+ clash_dashboard_port,
-		external_ui: "/var/run/homeproxy/ui",
+		external_ui: RUN_DIR + '/ui',
+		external_ui_download_url: clash_external_ui_download_url,
 		store_selected: true
 	}
 };
+
+if (clash_cleanup_ui_files === '1') {
+	system('rm -rf ' + RUN_DIR + '/ui');
+}
 
 /* DNS start */
 /* Default settings */
