@@ -528,12 +528,12 @@ if (!isEmpty(main_node)) {
 config.route = {
 	geoip: !isEmpty(default_outbound) ? {
 		path: HP_DIR + '/resources/geoip.db',
-		download_url: 'https://github.com/1715173329/sing-geoip/releases/latest/download/geoip.db',
+		download_url: 'https://github.com/douglarek/sing-geoip/releases/latest/download/geoip.db',
 		download_detour: get_outbound(default_outbound)
 	} : null,
 	geosite: !isEmpty(default_outbound) ? {
 		path: HP_DIR + '/resources/geosite.db',
-		download_url: 'https://github.com/1715173329/sing-geosite/releases/latest/download/geosite.db',
+		download_url: 'https://github.com/douglarek/sing-geosite/releases/latest/download/geosite.db',
 		download_detour: get_outbound(default_outbound)
 	} : null,
 	rules: [
