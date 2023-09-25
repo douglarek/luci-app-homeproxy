@@ -284,15 +284,15 @@ msgstr "检查更新"
 msgid "China DNS server"
 msgstr "国内 DNS 服务器"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:213
+#: htdocs/luci-static/resources/view/homeproxy/status.js:217
 msgid "China IPv4 list version"
 msgstr "大陆 IPv4 库版本"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:217
+#: htdocs/luci-static/resources/view/homeproxy/status.js:221
 msgid "China IPv6 list version"
 msgstr "大陆 IPv6 库版本"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:221
+#: htdocs/luci-static/resources/view/homeproxy/status.js:225
 msgid "China list version"
 msgstr "大陆域名列表版本"
 
@@ -309,17 +309,13 @@ msgstr "密码套件"
 msgid "Cisco Public DNS (208.67.222.222)"
 msgstr "思科公共 DNS（208.67.222.222）"
 
+#: htdocs/luci-static/resources/view/homeproxy/status.js:203
+msgid "Clash dashboard version"
+msgstr ""
+
 #: htdocs/luci-static/resources/view/homeproxy/status.js:165
 msgid "Clean log"
 msgstr "清空日志"
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1007
-msgid "Clean up UI files"
-msgstr "清理 UI 文件"
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1008
-msgid "Clean up the previous UI files every time you start."
-msgstr "每次启动时清理上一次的 UI 文件。"
 
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:14
 msgid "Client Settings"
@@ -395,7 +391,6 @@ msgstr "控制面板"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:437
 #: htdocs/luci-static/resources/view/homeproxy/client.js:703
 #: htdocs/luci-static/resources/view/homeproxy/client.js:980
-#: htdocs/luci-static/resources/view/homeproxy/client.js:991
 #: htdocs/luci-static/resources/view/homeproxy/node.js:810
 #: htdocs/luci-static/resources/view/homeproxy/node.js:849
 #: htdocs/luci-static/resources/view/homeproxy/node.js:906
@@ -698,7 +693,6 @@ msgstr "加密方式"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:941
 #: htdocs/luci-static/resources/view/homeproxy/client.js:970
 #: htdocs/luci-static/resources/view/homeproxy/client.js:985
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1000
 #: htdocs/luci-static/resources/view/homeproxy/node.js:474
 #: htdocs/luci-static/resources/view/homeproxy/node.js:583
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1279
@@ -713,10 +707,6 @@ msgstr "请输入：%s"
 #: htdocs/luci-static/resources/view/homeproxy/server.js:537
 msgid "External Account Binding"
 msgstr "外部账户绑定"
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:990
-msgid "External UI download url"
-msgstr "外部 UI 下载地址"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:549
 msgid "External account MAC key"
@@ -751,7 +741,7 @@ msgstr "流控"
 msgid "GET"
 msgstr "GET"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:225
+#: htdocs/luci-static/resources/view/homeproxy/status.js:229
 msgid "GFW list version"
 msgstr "GFW 域名列表版本"
 
@@ -775,11 +765,11 @@ msgstr "游戏模式 MAC 地址"
 msgid "GeoIP"
 msgstr "GeoIP"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:204
+#: htdocs/luci-static/resources/view/homeproxy/status.js:208
 msgid "GeoIP version"
 msgstr "GeoIP 版本"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:208
+#: htdocs/luci-static/resources/view/homeproxy/status.js:212
 msgid "GeoSite version"
 msgstr "GeoSite 版本"
 
@@ -853,7 +843,7 @@ msgstr "心跳间隔"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:57
 #: htdocs/luci-static/resources/view/homeproxy/client.js:59
 #: htdocs/luci-static/resources/view/homeproxy/client.js:112
-#: htdocs/luci-static/resources/view/homeproxy/status.js:233
+#: htdocs/luci-static/resources/view/homeproxy/status.js:237
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:3
 msgid "HomeProxy"
 msgstr "HomeProxy"
@@ -2384,10 +2374,6 @@ msgstr "gVisor"
 msgid "iOS"
 msgstr "iOS"
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:993
-msgid "metacubexd"
-msgstr ""
-
 #: htdocs/luci-static/resources/homeproxy.js:248
 #: htdocs/luci-static/resources/homeproxy.js:266
 #: htdocs/luci-static/resources/view/homeproxy/client.js:176
@@ -2416,11 +2402,11 @@ msgstr "通过"
 msgid "private key"
 msgstr "私钥"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:236
+#: htdocs/luci-static/resources/view/homeproxy/status.js:240
 msgid "sing-box client"
 msgstr "sing-box 客户端"
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:239
+#: htdocs/luci-static/resources/view/homeproxy/status.js:243
 msgid "sing-box server"
 msgstr "sing-box 服务端"
 
@@ -2491,17 +2477,18 @@ msgstr "有效端口范围（port1:port2）"
 msgid "valid port value"
 msgstr "有效端口值"
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1000
-msgid "valid url value"
-msgstr ""
-
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:992
-msgid "yacd-meta"
-msgstr ""
+#~ msgid "Clean up UI files"
+#~ msgstr "清理 UI 文件"
+
+#~ msgid "Clean up the previous UI files every time you start."
+#~ msgstr "每次启动时清理上一次的 UI 文件。"
+
+#~ msgid "External UI download url"
+#~ msgstr "外部 UI 下载地址"
 
 #~ msgid "Clash dashboard port"
 #~ msgstr "面板端口"

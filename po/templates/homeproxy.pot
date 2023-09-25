@@ -277,15 +277,15 @@ msgstr ""
 msgid "China DNS server"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:213
+#: htdocs/luci-static/resources/view/homeproxy/status.js:217
 msgid "China IPv4 list version"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:217
+#: htdocs/luci-static/resources/view/homeproxy/status.js:221
 msgid "China IPv6 list version"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:221
+#: htdocs/luci-static/resources/view/homeproxy/status.js:225
 msgid "China list version"
 msgstr ""
 
@@ -302,16 +302,12 @@ msgstr ""
 msgid "Cisco Public DNS (208.67.222.222)"
 msgstr ""
 
+#: htdocs/luci-static/resources/view/homeproxy/status.js:203
+msgid "Clash dashboard version"
+msgstr ""
+
 #: htdocs/luci-static/resources/view/homeproxy/status.js:165
 msgid "Clean log"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1007
-msgid "Clean up UI files"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1008
-msgid "Clean up the previous UI files every time you start."
 msgstr ""
 
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:14
@@ -388,7 +384,6 @@ msgstr ""
 #: htdocs/luci-static/resources/view/homeproxy/client.js:437
 #: htdocs/luci-static/resources/view/homeproxy/client.js:703
 #: htdocs/luci-static/resources/view/homeproxy/client.js:980
-#: htdocs/luci-static/resources/view/homeproxy/client.js:991
 #: htdocs/luci-static/resources/view/homeproxy/node.js:810
 #: htdocs/luci-static/resources/view/homeproxy/node.js:849
 #: htdocs/luci-static/resources/view/homeproxy/node.js:906
@@ -679,7 +674,6 @@ msgstr ""
 #: htdocs/luci-static/resources/view/homeproxy/client.js:941
 #: htdocs/luci-static/resources/view/homeproxy/client.js:970
 #: htdocs/luci-static/resources/view/homeproxy/client.js:985
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1000
 #: htdocs/luci-static/resources/view/homeproxy/node.js:474
 #: htdocs/luci-static/resources/view/homeproxy/node.js:583
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1279
@@ -693,10 +687,6 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:537
 msgid "External Account Binding"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:990
-msgid "External UI download url"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:549
@@ -732,7 +722,7 @@ msgstr ""
 msgid "GET"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:225
+#: htdocs/luci-static/resources/view/homeproxy/status.js:229
 msgid "GFW list version"
 msgstr ""
 
@@ -756,11 +746,11 @@ msgstr ""
 msgid "GeoIP"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:204
+#: htdocs/luci-static/resources/view/homeproxy/status.js:208
 msgid "GeoIP version"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:208
+#: htdocs/luci-static/resources/view/homeproxy/status.js:212
 msgid "GeoSite version"
 msgstr ""
 
@@ -834,7 +824,7 @@ msgstr ""
 #: htdocs/luci-static/resources/view/homeproxy/client.js:57
 #: htdocs/luci-static/resources/view/homeproxy/client.js:59
 #: htdocs/luci-static/resources/view/homeproxy/client.js:112
-#: htdocs/luci-static/resources/view/homeproxy/status.js:233
+#: htdocs/luci-static/resources/view/homeproxy/status.js:237
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:3
 msgid "HomeProxy"
 msgstr ""
@@ -2329,10 +2319,6 @@ msgstr ""
 msgid "iOS"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:993
-msgid "metacubexd"
-msgstr ""
-
 #: htdocs/luci-static/resources/homeproxy.js:248
 #: htdocs/luci-static/resources/homeproxy.js:266
 #: htdocs/luci-static/resources/view/homeproxy/client.js:176
@@ -2361,11 +2347,11 @@ msgstr ""
 msgid "private key"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:236
+#: htdocs/luci-static/resources/view/homeproxy/status.js:240
 msgid "sing-box client"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:239
+#: htdocs/luci-static/resources/view/homeproxy/status.js:243
 msgid "sing-box server"
 msgstr ""
 
@@ -2435,14 +2421,6 @@ msgstr ""
 msgid "valid port value"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:1000
-msgid "valid url value"
-msgstr ""
-
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:992
-msgid "yacd-meta"
 msgstr ""
