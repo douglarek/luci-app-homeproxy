@@ -64,8 +64,9 @@ check_clash_dashboard_update() {
 	fi
 
 	$wget "https://github.com/$cdrepo/archive/gh-pages.tar.gz" -O "$RESOURCES_DIR/$cdtype.tar.gz" && \
-		rm -rf "$RESOURCES_DIR/ui/*" && \
-		tar -zxf "$RESOURCES_DIR/$cdtype.tar.gz" --strip-components=1 -C "$RESOURCES_DIR/ui" && \
+		tar -zxf "$RESOURCES_DIR/$cdtype.tar.gz" -C "$RESOURCES_DIR" && \
+		rm -rf "$RESOURCES_DIR/ui" && \
+		mv -f $RESOURCES_DIR/*-gh-pages "$RESOURCES_DIR/ui" && \
 		rm -rf "$RESOURCES_DIR/$cdtype.tar.gz"
 
 	echo -e "$cddata_ver" > "$RESOURCES_DIR/$cdtype.ver"
