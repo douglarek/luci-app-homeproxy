@@ -200,6 +200,10 @@ return view.extend({
 		s = m.section(form.NamedSection, 'config', 'homeproxy', _('Resources management'));
 		s.anonymous = true;
 
+		o = s.option(form.DummyValue, '_clash_dashboard_version', _('Clash dashboard version'));
+		o.cfgvalue = function() { return getResVersion(this, 'clash_dashboard') };
+		o.rawhtml = true;
+
 		if (routing_mode === 'custom') {
 			o = s.option(form.DummyValue, '_geoip_version', _('GeoIP version'));
 			o.cfgvalue = function() { return getResVersion(this, 'geoip') };

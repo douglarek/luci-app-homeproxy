@@ -37,6 +37,44 @@ to_upper() {
 	echo -e "$1" | tr "[a-z]" "[A-Z]"
 }
 
+check_clash_dashboard_update() {
+	local cdtype="$1"
+	local cdrepo="$2"
+	local wget="wget --timeout=10 -q"
+
+	set_lock "set" "$cdtype"
+
+	local cddata_ver="$($wget -O- "https://api.github.com/repos/$cdrepo/releases/latest" | jsonfilter -e "@.tag_name")"
+	if [ -z "$cddata_ver" ]; then
+		log "[$(to_upper "$cdtype")] Failed to get the latest version, please retry later."
+
+		set_lock "remove" "$cdtype"
+		return 1
+	fi
+
+	local local_cddata_ver="$(cat "$RESOURCES_DIR/$cdtype.ver" 2>"/dev/null" || echo "NOT FOUND")"
+	if [ "$local_cddata_ver" = "$cddata_ver" ]; then
+		log "[$(to_upper "$cdtype")] Current version: $cddata_ver."
+		log "[$(to_upper "$cdtype")] You're already at the latest version."
+
+		set_lock "remove" "$cdtype"
+		return 3
+	else
+		log "[$(to_upper "$cdtype")] Local version: $local_cddata_ver, latest version: $cddata_ver."
+	fi
+
+	$wget "https://github.com/$cdrepo/archive/gh-pages.tar.gz" -O "$RESOURCES_DIR/$cdtype.tar.gz" && \
+		rm -rf "$RESOURCES_DIR/ui/*" && \
+		tar -zxf "$RESOURCES_DIR/$cdtype.tar.gz" --strip-components=1 -C "$RESOURCES_DIR/ui" && \
+		rm -rf "$RESOURCES_DIR/$cdtype.tar.gz"
+
+	echo -e "$cddata_ver" > "$RESOURCES_DIR/$cdtype.ver"
+	log "[$(to_upper "$cdtype")] Successfully updated."
+
+	set_lock "remove" "$cdtype"
+	return 0
+}
+
 check_geodata_update() {
 	local geotype="$1"
 	local georepo="$2"
@@ -130,6 +168,9 @@ check_list_update() {
 }
 
 case "$1" in
+"clash_dashboard")
+	check_clash_dashboard_update "$1" "MetaCubeX/metacubexd"
+	;;
 "geoip")
 	check_geodata_update "$1" "douglarek/sing-geoip"
 	;;
@@ -149,7 +190,7 @@ case "$1" in
 	check_list_update "$1" "Loyalsoldier/v2ray-rules-dat" "release" "direct-list.txt"
 	;;
 *)
-	echo -e "Usage: $0 <geoip / geosite / china_ip4 / china_ip6 / gfw_list / china_list>"
+	echo -e "Usage: $0 <clash_dashboard/ geoip / geosite / china_ip4 / china_ip6 / gfw_list / china_list>"
 	exit 1
 	;;
 esac
