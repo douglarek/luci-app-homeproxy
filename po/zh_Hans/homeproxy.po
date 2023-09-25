@@ -311,7 +311,7 @@ msgstr "思科公共 DNS（208.67.222.222）"
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:203
 msgid "Clash dashboard version"
-msgstr ""
+msgstr "Clash 面板版本"
 
 #: htdocs/luci-static/resources/view/homeproxy/status.js:165
 msgid "Clean log"
@@ -2480,15 +2480,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "Clean up UI files"
-#~ msgstr "清理 UI 文件"
-
-#~ msgid "Clean up the previous UI files every time you start."
-#~ msgstr "每次启动时清理上一次的 UI 文件。"
-
-#~ msgid "External UI download url"
-#~ msgstr "外部 UI 下载地址"
-
-#~ msgid "Clash dashboard port"
-#~ msgstr "面板端口"
