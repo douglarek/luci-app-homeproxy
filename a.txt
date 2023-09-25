@@ -1,0 +1,4 @@
+        $wget "https://github.com/MetaCubeX/metacubexd/download/v1.115.0/compressed-dist.tgz" -O "$/etc/homeproxy/resources/compressed-dist.tgz" && \
+                rm -rf "$/etc/homeproxy/resources/ui" && mkdir -p "$/etc/homeproxy/resources/ui" && \
+                tar -zxf "$/etc/homeproxy/resources/compressed-dist.tgz" -C "$/etc/homeproxy/resources/ui" && \
+                rm -rf "$/etc/homeproxy/resources/compressed-dist.tgz"

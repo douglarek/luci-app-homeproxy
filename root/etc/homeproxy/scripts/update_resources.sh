@@ -63,11 +63,10 @@ check_clash_dashboard_update() {
 		log "[$(to_upper "$cdtype")] Local version: $local_cddata_ver, latest version: $cddata_ver."
 	fi
 
-	$wget "https://github.com/$cdrepo/archive/gh-pages.tar.gz" -O "$RESOURCES_DIR/$cdtype.tar.gz" && \
-		tar -zxf "$RESOURCES_DIR/$cdtype.tar.gz" -C "$RESOURCES_DIR" && \
-		rm -rf "$RESOURCES_DIR/ui" && \
-		mv -f $RESOURCES_DIR/*-gh-pages "$RESOURCES_DIR/ui" && \
-		rm -rf "$RESOURCES_DIR/$cdtype.tar.gz"
+	$wget "https://github.com/$cdrepo/releases/download/$cddata_ver/compressed-dist.tgz" -O "$RESOURCES_DIR/compressed-dist.tgz" && \
+		rm -rf "$RESOURCES_DIR/ui" && mkdir -p "$RESOURCES_DIR/ui" && \
+		tar -zxf "$RESOURCES_DIR/compressed-dist.tgz" -C "$RESOURCES_DIR/ui" && \
+		rm -rf "$RESOURCES_DIR/compressed-dist.tgz"
 
 	echo -e "$cddata_ver" > "$RESOURCES_DIR/$cdtype.ver"
 	log "[$(to_upper "$cdtype")] Successfully updated."
