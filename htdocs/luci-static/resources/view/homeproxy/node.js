@@ -67,6 +67,28 @@ function parseShareLink(uri, features) {
 			};
 
 			break;
+		case 'hysteria2':
+		case 'hy2':
+			/* https://v2.hysteria.network/docs/developers/URI-Scheme/ */
+			var url = new URL('http://' + uri[1]);
+			var params = url.searchParams;
+
+			/* userpass auth is not supported by sing-box */
+			if (!features.with_quic || url.password)
+				return null;
+
+			config = {
+				label: url.hash ? decodeURIComponent(url.hash.slice(1)) : null,
+				type: 'hysteria2',
+				address: url.hostname,
+				port: url.port || '80',
+				password: url.username ? decodeURIComponent(url.username) : null,
+				hysteria_obfs_type: params.get('obfs'),
+				hysteria_obfs_password: params.get('obfs-password'),
+				tls: '1',
+				tls_sni: params.get('sni'),
+				tls_insecure: params.get('insecure') ? '1' : '0'
+			};
 		case 'socks':
 		case 'socks4':
 		case 'socks4a':
