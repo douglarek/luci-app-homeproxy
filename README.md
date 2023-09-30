@@ -9,18 +9,3 @@
 ---
 
 * [Wiki](https://github.com/douglarek/luci-app-homeproxy/wiki)
-
-
-下载地址
----
-
-* IPK [前往下载](https://github.com/douglarek/luci-app-homeproxy/releases)
-
-
-依赖
----
-
-* sing-box
-* chinadns-ng (可选)
-* firewall4
-* kmod-nft-tproxy
