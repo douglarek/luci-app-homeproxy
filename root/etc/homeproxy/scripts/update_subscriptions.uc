@@ -80,7 +80,7 @@ function log(...args) {
 }
 
 function parse_uri(uri) {
-	let config, url, params;
+	let config;
 
 	if (type(uri) === 'object') {
 		if (uri.nodetype === 'sip008') {
@@ -102,26 +102,26 @@ function parse_uri(uri) {
 		switch (uri[0]) {
 		case 'http':
 		case 'https':
-			url = parseURL('http://' + uri[1]);
+			const http_url = parseURL('http://' + uri[1]);
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: http_url.hash ? urldecode(http_url.hash) : null,
 				type: 'http',
-				address: url.hostname,
-				port: url.port,
-				username: url.username ? urldecode(url.username) : null,
-				password: url.password ? urldecode(url.password) : null,
+				address: http_url.hostname,
+				port: http_url.port,
+				username: http_url.username ? urldecode(http_url.username) : null,
+				password: http_url.password ? urldecode(http_url.password) : null,
 				tls: (uri[0] === 'https') ? '1' : '0'
 			};
 
 			break;
 		case 'hysteria':
 			/* https://github.com/HyNetwork/hysteria/wiki/URI-Scheme */
-			url = parseURL('http://' + uri[1]);
-			params = url.searchParams;
+			const hysteria_url = parseURL('http://' + uri[1]),
+			      hysteria_params = hysteria_url.searchParams;
 
-			if (!sing_features.with_quic || (params.protocol && params.protocol !== 'udp')) {
-				log(sprintf('Skipping unsupported %s node: %s.', 'hysteria', urldecode(url.hash) || url.hostname));
+			if (!sing_features.with_quic || (hysteria_params.protocol && hysteria_params.protocol !== 'udp')) {
+				log(sprintf('Skipping unsupported %s node: %s.', 'hysteria', urldecode(hysteria_url.hash) || hysteria_url.hostname));
 				if (!sing_features.with_quic)
 					log(sprintf('Please rebuild sing-box with %s support!', 'QUIC'));
 
@@ -129,32 +129,31 @@ function parse_uri(uri) {
 			}
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: hysteria_url.hash ? urldecode(hysteria_url.hash) : null,
 				type: 'hysteria',
-				address: url.hostname,
-				port: url.port,
-				hysteria_protocol: params.protocol || 'udp',
-				hysteria_auth_type: params.auth ? 'string' : null,
-				hysteria_auth_payload: params.auth,
-				hysteria_obfs_password: params.obfsParam,
-				hysteria_down_mbps: params.downmbps,
-				hysteria_up_mbps: params.upmbps,
+				address: hysteria_url.hostname,
+				port: hysteria_url.port,
+				hysteria_protocol: hysteria_params.protocol || 'udp',
+				hysteria_auth_type: hysteria_params.auth ? 'string' : null,
+				hysteria_auth_payload: hysteria_params.auth,
+				hysteria_obfs_password: hysteria_params.obfsParam,
+				hysteria_down_mbps: hysteria_params.downmbps,
+				hysteria_up_mbps: hysteria_params.upmbps,
 				tls: '1',
-				tls_insecure: (params.insecure in ['true', '1']) ? '1' : '0',
-				tls_sni: params.peer,
-				tls_alpn: params.alpn
+				tls_insecure: (hysteria_params.insecure in ['true', '1']) ? '1' : '0',
+				tls_sni: hysteria_params.peer,
+				tls_alpn: hysteria_params.alpn
 			};
 
 			break;
 		case 'hysteria2':
 		case 'hy2':
 			/* https://v2.hysteria.network/docs/developers/URI-Scheme/ */
-			url = parseURL('http://' + uri[1]);
-			params = url.searchParams;
+			const hysteria2_url = parseURL('http://' + uri[1]),
+			      hysteria2_params = hysteria2_url.searchParams;
 
-			/* userpass auth is not supported by sing-box */
-			if (!sing_features.with_quic || (params.password)) {
-				log(sprintf('Skipping unsupported %s node: %s.', 'hysteria2', urldecode(url.hash) || url.hostname));
+			if (!sing_features.with_quic || (hysteria2_params.password)) {
+				log(sprintf('Skipping unsupported %s node: %s.', 'hysteria2', urldecode(hysteria2_url.hash) || hysteria2_url.hostname));
 				if (!sing_features.with_quic)
 					log(sprintf('Please rebuild sing-box with %s support!', 'QUIC'));
 
@@ -162,31 +161,31 @@ function parse_uri(uri) {
 			}
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: hysteria2_url.hash ? urldecode(hysteria2_url.hash) : null,
 				type: 'hysteria2',
-				address: url.hostname,
-				port: url.port,
-				password: url.password ? urldecode(url.password) : null,
-				hysteria_obfs_type: params.obfs,
-				hysteria_obfs_password: params['obfs-password'],
+				address: hysteria2_url.hostname,
+				port: hysteria2_url.port,
+				password: hysteria2_url.password ? urldecode(hysteria2_url.password) : null,
+				hysteria_obfs_type: hysteria2_params.obfs,
+				hysteria_obfs_password: hysteria2_params['obfs-password'],
 				tls: '1',
-				tls_insecure: params.insecure ? '1' : '0',
-				tls_sni: params.sni
+				tls_insecure: hysteria2_params.insecure ? '1' : '0',
+				tls_sni: hysteria2_params.sni
 			};
 		case 'socks':
 		case 'socks4':
 		case 'socks4a':
 		case 'socsk5':
 		case 'socks5h':
-			url = parseURL('http://' + uri[1]);
+			const socks_url = parseURL('http://' + uri[1]);
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: socks_url.hash ? urldecode(socks_url.hash) : null,
 				type: 'socks',
-				address: url.hostname,
-				port: url.port,
-				username: url.username ? urldecode(url.username) : null,
-				password: url.password ? urldecode(url.password) : null,
+				address: socks_url.hostname,
+				port: socks_url.port,
+				username: socks_url.username ? urldecode(socks_url.username) : null,
+				password: socks_url.password ? urldecode(socks_url.password) : null,
 				socks_version: (match(uri[0], /4/)) ? '4' : '5'
 			};
 
@@ -206,19 +205,19 @@ function parse_uri(uri) {
 			/* https://github.com/shadowsocks/shadowsocks-org/commit/78ca46cd6859a4e9475953ed34a2d301454f579e */
 
 			/* SIP002 format https://shadowsocks.org/guide/sip002.html */
-			url = parseURL('http://' + uri[1]);
+			const ss_url = parseURL('http://' + uri[1]);
 
 			let ss_userinfo = {};
-			if (url.username && url.password)
+			if (ss_url.username && ss_url.password)
 				/* User info encoded with URIComponent */
-				ss_userinfo = [url.username, urldecode(url.password)];
-			else if (url.username)
+				ss_userinfo = [ss_url.username, urldecode(ss_url.password)];
+			else if (ss_url.username)
 				/* User info encoded with base64 */
-				ss_userinfo = split(decodeBase64Str(urldecode(url.username)), ':');
+				ss_userinfo = split(decodeBase64Str(urldecode(ss_url.username)), ':');
 
 			let ss_plugin, ss_plugin_opts;
-			if (url.search && url.searchParams.plugin) {
-				const ss_plugin_info = split(url.searchParams.plugin, ';');
+			if (ss_url.search && ss_url.searchParams.plugin) {
+				const ss_plugin_info = split(ss_url.searchParams.plugin, ';');
 				ss_plugin = ss_plugin_info[0];
 				if (ss_plugin === 'simple-obfs')
 					/* Fix non-standard plugin name */
@@ -227,10 +226,10 @@ function parse_uri(uri) {
 			}
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: ss_url.hash ? urldecode(ss_url.hash) : null,
 				type: 'shadowsocks',
-				address: url.hostname,
-				port: url.port,
+				address: ss_url.hostname,
+				port: ss_url.port,
 				shadowsocks_encrypt_method: ss_userinfo[0],
 				password: ss_userinfo[1],
 				shadowsocks_plugin: ss_plugin,
@@ -245,53 +244,53 @@ function parse_uri(uri) {
 				return null;
 
 			const userinfo = split(uri[0], ':'),
-			params = urldecode_params(uri[1]);
+			      ssr_params = urldecode_params(uri[1]);
 
 			if (!sing_features.with_shadowsocksr) {
-				log(sprintf('Skipping unsupported %s node: %s.', 'ShadowsocksR', decodeBase64Str(params.remarks) || userinfo[1]));
+				log(sprintf('Skipping unsupported %s node: %s.', 'ShadowsocksR', decodeBase64Str(ssr_params.remarks) || userinfo[1]));
 				log(sprintf('Please rebuild sing-box with %s support!', 'ShadowsocksR'));
 
 				return null;
 			}
 
 			config = {
-				label: decodeBase64Str(params.remarks),
+				label: decodeBase64Str(ssr_params.remarks),
 				type: 'shadowsocksr',
 				address: userinfo[0],
 				port: userinfo[1],
 				shadowsocksr_encrypt_method: userinfo[3],
 				password: decodeBase64Str(userinfo[5]),
 				shadowsocksr_protocol: userinfo[2],
-				shadowsocksr_protocol_param: decodeBase64Str(params.protoparam),
+				shadowsocksr_protocol_param: decodeBase64Str(ssr_params.protoparam),
 				shadowsocksr_obfs: userinfo[4],
-				shadowsocksr_obfs_param: decodeBase64Str(params.obfsparam)
+				shadowsocksr_obfs_param: decodeBase64Str(ssr_params.obfsparam)
 			};
 
 			break;
 		case 'trojan':
 			/* https://p4gefau1t.github.io/trojan-go/developer/url/ */
-			url = parseURL('http://' + uri[1]);
-			params = url.searchParams || {};
+			const trojan_url = parseURL('http://' + uri[1]),
+			      trojan_params = trojan_url.searchParams || {};
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: trojan_url.hash ? urldecode(trojan_url.hash) : null,
 				type: 'trojan',
-				address: url.hostname,
-				port: url.port,
-				password: urldecode(url.username),
-				transport: (params.type !== 'tcp') ? params.type : null,
+				address: trojan_url.hostname,
+				port: trojan_url.port,
+				password: urldecode(trojan_url.username),
+				transport: (trojan_params.type !== 'tcp') ? trojan_params.type : null,
 				tls: '1',
-				tls_sni: params.sni
+				tls_sni: trojan_params.sni
 			};
-			switch(params.type) {
+			switch(trojan_params.type) {
 			case 'grpc':
-				config.grpc_servicename = params.serviceName;
+				config.grpc_servicename = trojan_params.serviceName;
 				break;
 			case 'ws':
 				/* We don't parse "host" param when TLS is enabled, as some providers are abusing it (host vs sni)
-				 * config.ws_host = params.host ? urldecode(params.host) : null;
+				 * config.ws_host = trojan_params.host ? urldecode(trojan_params.host) : null;
 				 */
-				config.ws_path = params.path ? urldecode(params.path) : null;
+				config.ws_path = trojan_params.path ? urldecode(trojan_params.path) : null;
 				if (config.ws_path && match(config.ws_path, /\?ed=/)) {
 					config.websocket_early_data_header = 'Sec-WebSocket-Protocol';
 					config.websocket_early_data = split(config.ws_path, '?ed=')[1];
@@ -303,42 +302,42 @@ function parse_uri(uri) {
 			break;
 		case 'tuic':
 			/* https://github.com/daeuniverse/dae/discussions/182 */
-			url = parseURL('http://' + uri[1]);
-			params = url.searchParams || {};
+			const tuic_url = parseURL('http://' + uri[1]),
+			      tuic_params = tuic_url.searchParams || {};
 
 			if (!sing_features.with_quic) {
-				log(sprintf('Skipping unsupported %s node: %s.', 'tuic', urldecode(url.hash) || url.hostname));
+				log(sprintf('Skipping unsupported %s node: %s.', 'tuic', urldecode(tuic_url.hash) || tuic_url.hostname));
 				log(sprintf('Please rebuild sing-box with %s support!', 'QUIC'));
 
 				return null;
 			}
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: tuic_url.hash ? urldecode(tuic_url.hash) : null,
 				type: 'tuic',
-				address: url.hostname,
-				port: url.port,
-				uuid: url.username,
-				password: url.password ? urldecode(url.password) : null,
-				tuic_congestion_control: params.congestion_control,
-				tuic_udp_relay_mode: params.udp_relay_mode,
+				address: tuic_url.hostname,
+				port: tuic_url.port,
+				uuid: tuic_url.username,
+				password: tuic_url.password ? urldecode(tuic_url.password) : null,
+				tuic_congestion_control: tuic_params.congestion_control,
+				tuic_udp_relay_mode: tuic_params.udp_relay_mode,
 				tls: '1',
-				tls_sni: params.sni,
-				tls_alpn: params.alpn ? split(urldecode(params.alpn), ',') : null,
+				tls_sni: tuic_params.sni,
+				tls_alpn: tuic_params.alpn ? split(urldecode(tuic_params.alpn), ',') : null,
 			};
 
 			break;
 		case 'vless':
 			/* https://github.com/XTLS/Xray-core/discussions/716 */
-			url = parseURL('http://' + uri[1]);
-			params = url.searchParams;
+			const vless_url = parseURL('http://' + uri[1]),
+			      vless_params = vless_url.searchParams;
 
 			/* Unsupported protocol */
-			if (params.type === 'kcp') {
-				log(sprintf('Skipping sunsupported %s node: %s.', 'VLESS', urldecode(url.hash) || url.hostname));
+			if (vless_params.type === 'kcp') {
+				log(sprintf('Skipping sunsupported %s node: %s.', 'VLESS', urldecode(vless_url.hash) || vless_url.hostname));
 				return null;
-			} else if (params.type === 'quic' && (params.quicSecurity && params.quicSecurity !== 'none' || !sing_features.with_quic)) {
-				log(sprintf('Skipping sunsupported %s node: %s.', 'VLESS', urldecode(url.hash) || url.hostname));
+			} else if (vless_params.type === 'quic' && (vless_params.quicSecurity && vless_params.quicSecurity !== 'none' || !sing_features.with_quic)) {
+				log(sprintf('Skipping sunsupported %s node: %s.', 'VLESS', urldecode(vless_url.hash) || vless_url.hostname));
 				if (!sing_features.with_quic)
 					log(sprintf('Please rebuild sing-box with %s support!', 'QUIC'));
 
@@ -346,36 +345,36 @@ function parse_uri(uri) {
 			}
 
 			config = {
-				label: url.hash ? urldecode(url.hash) : null,
+				label: vless_url.hash ? urldecode(vless_url.hash) : null,
 				type: 'vless',
-				address: url.hostname,
-				port: url.port,
-				uuid: url.username,
-				transport: (params.type !== 'tcp') ? params.type : null,
-				tls: (params.security in ['tls', 'xtls', 'reality']) ? '1' : '0',
-				tls_sni: params.sni,
-				tls_alpn: params.alpn ? split(urldecode(params.alpn), ',') : null,
-				tls_reality: (params.security === 'reality') ? '1' : '0',
-				tls_reality_public_key: params.pbk ? urldecode(params.pbk) : null,
-				tls_reality_short_id: params.sid,
-				tls_utls: sing_features.with_utls ? params.fp : null,
-				vless_flow: (params.security in ['tls', 'reality']) ? params.flow : null
+				address: vless_url.hostname,
+				port: vless_url.port,
+				uuid: vless_url.username,
+				transport: (vless_params.type !== 'tcp') ? vless_params.type : null,
+				tls: (vless_params.security in ['tls', 'xtls', 'reality']) ? '1' : '0',
+				tls_sni: vless_params.sni,
+				tls_alpn: vless_params.alpn ? split(urldecode(vless_params.alpn), ',') : null,
+				tls_reality: (vless_params.security === 'reality') ? '1' : '0',
+				tls_reality_public_key: vless_params.pbk ? urldecode(vless_params.pbk) : null,
+				tls_reality_short_id: vless_params.sid,
+				tls_utls: sing_features.with_utls ? vless_params.fp : null,
+				vless_flow: (vless_params.security in ['tls', 'reality']) ? vless_params.flow : null
 			};
-			switch(params.type) {
+			switch(vless_params.type) {
 			case 'grpc':
-				config.grpc_servicename = params.serviceName;
+				config.grpc_servicename = vless_params.serviceName;
 				break;
 			case 'http':
 			case 'tcp':
-				if (config.transport === 'http' || params.headerType === 'http') {
-					config.http_host = params.host ? split(urldecode(params.host), ',') : null;
-					config.http_path = params.path ? urldecode(params.path) : null;
+				if (config.transport === 'http' || vless_params.headerType === 'http') {
+					config.http_host = vless_params.host ? split(urldecode(vless_params.host), ',') : null;
+					config.http_path = vless_params.path ? urldecode(vless_params.path) : null;
 				}
 				break;
 			case 'ws':
 				/* We don't parse "host" param when TLS is enabled, as some providers are abusing it (host vs sni) */
-				config.ws_host = (config.tls !== '1' && params.host) ? urldecode(params.host) : null;
-				config.ws_path = params.path ? urldecode(params.path) : null;
+				config.ws_host = (config.tls !== '1' && vless_params.host) ? urldecode(vless_params.host) : null;
+				config.ws_path = vless_params.path ? urldecode(vless_params.path) : null;
 				if (config.ws_path && match(config.ws_path, /\?ed=/)) {
 					config.websocket_early_data_header = 'Sec-WebSocket-Protocol';
 					config.websocket_early_data = split(config.ws_path, '?ed=')[1];
