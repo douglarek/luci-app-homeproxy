@@ -152,15 +152,20 @@ function generate_outbound(node) {
 		/* Direct */
 		override_address: node.override_address,
 		override_port: strToInt(node.override_port),
-		/* Hysteria */
+		/* Hysteria(2) */
 		up_mbps: strToInt(node.hysteria_down_mbps),
 		down_mbps: strToInt(node.hysteria_down_mbps),
-		obfs: (node.type == 'hysteria2') ? {type: node.hysteria2_obfs_type, password: node.hyseria2_obfs_password} : node.hysteria_obfs_password,
+		obfs: node.hysteria_obfs_type ? {
+			type: node.hysteria_obfs_type,
+			password: node.hysteria_obfs_password
+		} : node.hysteria_obfs_password,
 		auth: (node.hysteria_auth_type === 'base64') ? node.hysteria_auth_payload : null,
 		auth_str: (node.hysteria_auth_type === 'string') ? node.hysteria_auth_payload : null,
 		recv_window_conn: strToInt(node.hysteria_recv_window_conn),
 		recv_window: strToInt(node.hysteria_revc_window),
 		disable_mtu_discovery: strToBool(node.hysteria_disable_mtu_discovery),
+		network: node.hysteria_network,
+		brutal_debug: strToBool(node.hysteria_brutal_debug),
 		/* Shadowsocks */
 		method: node.shadowsocks_encrypt_method || node.shadowsocksr_encrypt_method,
 		plugin: node.shadowsocks_plugin,
@@ -179,9 +184,6 @@ function generate_outbound(node) {
 		udp_over_stream: strToBool(node.tuic_udp_over_stream),
 		zero_rtt_handshake: strToBool(node.tuic_enable_zero_rtt),
 		heartbeat: node.tuic_heartbeat ? (node.tuic_heartbeat + 's') : null,
-		/* Hysteria2 */
-		network: node.hysteria2_network,
-		brutal_debug: strToBool(node.hysteria2_brutal_debug),
 		/* VLESS / VMess */
 		flow: node.vless_flow,
 		alter_id: strToInt(node.vmess_alterid),

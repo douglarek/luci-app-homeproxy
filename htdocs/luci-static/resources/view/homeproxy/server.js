@@ -104,6 +104,7 @@ return view.extend({
 		o.value('http', _('HTTP'));
 		if (features.with_quic) {
 			o.value('hysteria', _('Hysteria'));
+			o.value('hysteria2', _('Hysteria2'));
 			o.value('naive', _('NaïveProxy'));
 		}
 		o.value('shadowsocks', _('Shadowsocks'));
@@ -111,8 +112,6 @@ return view.extend({
 		o.value('trojan', _('Trojan'));
 		if (features.with_quic)
 			o.value('tuic', _('Tuic'));
-		if (features.with_quic)
-			o.value('hysteria2', _('Hysteria2'));
 		o.value('vless', _('VLESS'));
 		o.value('vmess', _('VMess'));
 		o.rmempty = false;
@@ -161,7 +160,7 @@ return view.extend({
 		}
 		o.modalonly = true;
 
-		/* Hysteria config start */
+		/* Hysteria(2) config start */
 		o = s.option(form.ListValue, 'hysteria_protocol', _('Protocol'));
 		o.value('udp');
 		/* WeChat-Video / FakeTCP are unsupported by sing-box currently
@@ -202,8 +201,15 @@ return view.extend({
 		o.rmempty = false;
 		o.modalonly = true;
 
+		o = s.option(form.ListValue, 'hysteria_obfs_type', _('Obfuscate type'));
+		o.value('', _('Disable'));
+		o.value('salamander', _('Salamander'));
+		o.depends('type', 'hysteria2');
+		o.modalonly = true;
+
 		o = s.option(form.Value, 'hysteria_obfs_password', _('Obfuscate password'));
 		o.depends('type', 'hysteria');
+		o.depends({'type': 'hysteria2', 'hysteria_obfs_type': /[\s\S]/});
 		o.modalonly = true;
 
 		o = s.option(form.Value, 'hysteria_recv_window_conn', _('QUIC stream receive window'),
@@ -232,7 +238,24 @@ return view.extend({
 		o.default = o.disabled;
 		o.depends('type', 'hysteria');
 		o.modalonly = true;
-		/* Hysteria config end */
+
+		o = s.option(form.Flag, 'hysteria_ignore_client_bandwidth', _('Commands the client to use the BBR flow control algorithm instead of Hysteria CC'),
+			_('Conflict with up_mbps and down_mbps.'));
+		o.default = o.disabled;
+		o.depends({'type': 'hysteria2', 'hysteria_down_mbps': '', 'hysteria_up_mbps': ''});
+		o.modalonly = true;
+
+		o = s.option(form.Value, 'hysteria_masquerade', _('HTTP3 server behavior when authentication fails'),
+			_('A 404 page will be returned if empty.'));
+		o.depends('type', 'hysteria2');
+		o.modalonly = true;
+
+		o = s.option(form.Flag, 'hysteria_brutal_debug', _('Debug Hysteria Brutal CC'),
+			_('Enable debug information logging for Hysteria Brutal CC.'));
+		o.default = s.disabled;
+		o.depends('type', 'hysteria2');
+		o.modalonly = true;
+		/* Hysteria(2) config end */
 
 		/* Shadowsocks config */
 		o = s.option(form.ListValue, 'shadowsocks_encrypt_method', _('Encrypt method'));
@@ -280,36 +303,6 @@ return view.extend({
 		o.depends('type', 'tuic');
 		o.modalonly = true;
 		/* Tuic config end */
-
-		/* Hysteria2 config start */
-		o = s.option(form.Value, 'hysteria2_obfs_type', _('QUIC traffic obfuscator type'));
-		o.default = '';
-		o.depends('type', 'hysteria2');
-		o.modalonly = true;
-
-		o = s.option(form.Value, 'hysteria2_obfs_password', _('QUIC traffic obfuscator password'));
-		o.default = '';
-		o.depends('type', 'hysteria2');
-		o.modalonly = true;
-
-		o = s.option(form.Flag, 'hysteria2_ignore_client_bandwidth', _('Commands the client to use the BBR flow control algorithm instead of Hysteria CC'),
-			_('Conflict with up_mbps and down_mbps.'));
-		o.default = o.disabled;
-		o.depends('type', 'hysteria2');
-		o.modalonly = true;
-
-		o = s.option(form.Value, 'hysteria2_masquerade', _('HTTP3 server behavior when authentication fails'),
-			_('A 404 page will be returned if empty.'));
-		o.default = '';
-		o.depends('type', 'hysteria2');
-		o.modalonly = true;
-
-		o = s.option(form.Flag, 'hysteria2_brutal_debug', _('Debug Hysteria Brutal CC'),
-			_('Enable debug information logging for Hysteria Brutal CC.'));
-		o.default = s.disabled;
-		o.depends('type', 'hysteria2');
-		o.modalonly = true;
-		/* Hysteria2 config end */
 
 		/* VLESS / VMess config start */
 		o = s.option(form.ListValue, 'vless_flow', _('Flow'));
@@ -424,6 +417,7 @@ return view.extend({
 		o.default = o.disabled;
 		o.depends('type', 'http');
 		o.depends('type', 'hysteria');
+		o.depends('type', 'hysteria2');
 		o.depends('type', 'naive');
 		o.depends('type', 'trojan');
 		o.depends('type', 'vless');
@@ -434,7 +428,7 @@ return view.extend({
 				var type = this.map.lookupOption('type', section_id)[0].formvalue(section_id);
 				var tls = this.map.findElement('id', 'cbid.homeproxy.%s.tls'.format(section_id)).firstElementChild;
 
-				if (['hysteria', 'tuic'].includes(type)) {
+				if (['hysteria', 'hysteria2', 'tuic'].includes(type)) {
 					tls.checked = true;
 					tls.disabled = true;
 				} else {
