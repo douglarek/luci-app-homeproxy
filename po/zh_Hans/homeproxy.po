@@ -677,7 +677,7 @@ msgstr "启用 UDP 分片。"
 #: htdocs/luci-static/resources/view/homeproxy/node.js:871
 #: htdocs/luci-static/resources/view/homeproxy/server.js:308
 msgid "Enable debug information logging for Hysteria Brutal CC."
-msgstr ""
+msgstr "启用 Hysteria Brutal CC 的调试信息记录。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:290
 msgid "Enable endpoint-independent NAT"
