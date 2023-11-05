@@ -304,11 +304,11 @@ return view.extend({
 		o.depends('type', 'hysteria2');
 		o.modalonly = true;
 
-		so = ss.option(form.Flag, 'hysteria2_brutal_debug', _('Debug Hysteria Brutal CC'),
+		o = s.option(form.Flag, 'hysteria2_brutal_debug', _('Debug Hysteria Brutal CC'),
 			_('Enable debug information logging for Hysteria Brutal CC.'));
-		so.default = so.disabled;
-		so.depends('type', 'hysteria2');
-		so.modalonly = true;
+		o.default = s.disabled;
+		o.depends('type', 'hysteria2');
+		o.modalonly = true;
 		/* Hysteria2 config end */
 
 		/* VLESS / VMess config start */
