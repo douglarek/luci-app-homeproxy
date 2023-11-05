@@ -410,7 +410,7 @@ msgstr "控制面板"
 #: htdocs/luci-static/resources/view/homeproxy/node.js:702
 #: htdocs/luci-static/resources/view/homeproxy/server.js:253
 msgid "Debug Hysteria Brutal CC"
-msgstr ""
+msgstr "调试 Hysteria Brutal CC"
 
 #: htdocs/luci-static/resources/homeproxy.js:17
 #: htdocs/luci-static/resources/view/homeproxy/client.js:437
@@ -1363,7 +1363,7 @@ msgstr "混淆密码"
 #: htdocs/luci-static/resources/view/homeproxy/node.js:651
 #: htdocs/luci-static/resources/view/homeproxy/server.js:204
 msgid "Obfuscate type"
-msgstr ""
+msgstr "混淆类型"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:845
 msgid "Only process traffic from specific interfaces. Leave empty for all."
@@ -2509,9 +2509,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "QUIC traffic obfuscator password"
-#~ msgstr "QUIC流量混淆器密码"
-
-#~ msgid "QUIC traffic obfuscator type"
-#~ msgstr "QUIC流量混淆器类型"
