@@ -73,9 +73,10 @@ uci.foreach(uciconfig, uciserver, (cfg) => {
 		zero_rtt_handshake: strToBool(cfg.tuic_enable_zero_rtt),
 		heartbeat: cfg.tuic_heartbeat ? (cfg.tuic_heartbeat + 's') : null,
 
-		/* Tuic */
+		/* hysteria2 */
 		ignore_client_bandwidth: cfg.hysteria2_ignore_client_bandwidth,
 		masquerade: cfg.hysteria2_masquerade,
+		brutal_debug: strToBool(cfg.hysteria2_brutal_debug),
 
 		/* HTTP / Hysteria / Socks / Trojan / Tuic / Hysteria2/ VLESS / VMess */
 		users: (cfg.type !== 'shadowsocks') ? [

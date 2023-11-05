@@ -181,6 +181,7 @@ function generate_outbound(node) {
 		heartbeat: node.tuic_heartbeat ? (node.tuic_heartbeat + 's') : null,
 		/* Hysteria2 */
 		network: node.hysteria2_network,
+		brutal_debug: strToBool(node.hysteria2_brutal_debug),
 		/* VLESS / VMess */
 		flow: node.vless_flow,
 		alter_id: strToInt(node.vmess_alterid),
