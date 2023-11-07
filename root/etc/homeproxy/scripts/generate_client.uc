@@ -50,7 +50,7 @@ const clash_dashboard_port = uci.get(uciconfig, ucimain, 'clash_dashboard_port')
 
 let main_node, main_udp_node, dedicated_udp_node, default_outbound, sniff_override = '1',
     dns_server, dns_default_strategy, dns_default_server, dns_disable_cache, dns_disable_cache_expire,
-    direct_domain_list;
+    dns_independent_cache, direct_domain_list;
 
 if (routing_mode !== 'custom') {
 	main_node = uci.get(uciconfig, ucimain, 'main_node') || 'nil';
@@ -70,6 +70,7 @@ if (routing_mode !== 'custom') {
 	dns_default_server = uci.get(uciconfig, ucidnssetting, 'default_server');
 	dns_disable_cache = uci.get(uciconfig, ucidnssetting, 'disable_cache');
 	dns_disable_cache_expire = uci.get(uciconfig, ucidnssetting, 'disable_cache_expire');
+	dns_independent_cache = uci.get(uciconfig, ucidnssetting, 'independent_cache');
 
 	/* Routing settings */
 	default_outbound = uci.get(uciconfig, uciroutingsetting, 'default_outbound') || 'nil';
@@ -352,7 +353,8 @@ config.dns = {
 	rules: [],
 	strategy: dns_default_strategy,
 	disable_cache: (dns_disable_cache === '1'),
-	disable_expire: (dns_disable_cache_expire === '1')
+	disable_expire: (dns_disable_cache_expire === '1'),
+	independent_cache: (dns_independent_cache === '1')
 };
 
 if (!isEmpty(main_node)) {
