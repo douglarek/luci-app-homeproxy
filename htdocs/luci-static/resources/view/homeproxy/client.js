@@ -711,11 +711,6 @@ return view.extend({
 		so.rmempty = false;
 		so.readonly = true;
 
-		so = ss.option(form.Flag, 'invert', _('Invert'),
-			_('Invert match result.'));
-		so.default = so.disabled;
-		so.modalonly = true;
-
 		so = ss.option(form.ListValue, 'network', _('Network'));
 		so.value('tcp', _('TCP'));
 		so.value('udp', _('UDP'));
@@ -750,6 +745,16 @@ return view.extend({
 			_('Match geosite.'));
 		so.modalonly = true;
 
+		so = ss.option(form.DynamicList, 'port', _('Port'),
+			_('Match port.'));
+		so.datatype = 'port';
+		so.modalonly = true;
+
+		so = ss.option(form.DynamicList, 'port_range', _('Port range'),
+			_('Match port range. Format as START:/:END/START:END.'));
+		so.validate = validatePortRange;
+		so.modalonly = true;
+
 		so = ss.option(form.DynamicList, 'source_geoip', _('Source GeoIP'),
 			_('Match source GeoIP.'));
 		so.modalonly = true;
@@ -769,16 +774,6 @@ return view.extend({
 		so.validate = validatePortRange;
 		so.modalonly = true;
 
-		so = ss.option(form.DynamicList, 'port', _('Port'),
-			_('Match port.'));
-		so.datatype = 'port';
-		so.modalonly = true;
-
-		so = ss.option(form.DynamicList, 'port_range', _('Port range'),
-			_('Match port range. Format as START:/:END/START:END.'));
-		so.validate = validatePortRange;
-		so.modalonly = true;
-
 		so = ss.option(form.DynamicList, 'process_name', _('Process name'),
 			_('Match process name.'));
 		so.modalonly = true;
@@ -789,6 +784,11 @@ return view.extend({
 
 		so = ss.option(form.DynamicList, 'user', _('User'),
 			_('Match user name.'));
+		so.modalonly = true;
+
+		so = ss.option(form.Flag, 'invert', _('Invert'),
+			_('Invert match result.'));
+		so.default = so.disabled;
 		so.modalonly = true;
 
 		so = ss.option(form.MultiValue, 'outbound', _('Outbound'),
