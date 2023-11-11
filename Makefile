@@ -22,7 +22,6 @@ define Package/luci-app-homeproxy/conffiles
 /etc/homeproxy/resources/geosite.ver
 /etc/homeproxy/resources/direct_list.txt
 /etc/homeproxy/resources/proxy_list.txt
-/etc/homeproxy/resources/clash_dashboard.ver
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
