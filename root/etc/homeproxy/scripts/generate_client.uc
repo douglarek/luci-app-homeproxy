@@ -265,9 +265,16 @@ function get_outbound(cfg) {
 	if (isEmpty(cfg))
 		return null;
 
-	if (cfg in ['direct-out', 'block-out'])
+	if (type(cfg) === 'array') {
+		let outbounds = [];
+		for (let i in cfg)
+			push(outbounds, get_outbound(i));
+		return outbounds;
+	}
+
+	if (cfg in ['direct-out', 'block-out']) {
 		return cfg;
-	else {
+	} else {
 		const node = uci.get(uciconfig, cfg, 'node');
 		if (isEmpty(node))
 			die(sprintf("%s's node is missing, please check your configuration.", cfg));
