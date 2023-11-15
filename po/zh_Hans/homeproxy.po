@@ -2146,7 +2146,7 @@ msgstr ""
 msgid ""
 "To enable Tun support, you need to install <code>ip-full</code> and "
 "<code>kmod-tun</code>"
-msgstr ""
+msgstr "启用 Tun 支持，需要安装 <code>ip-full</code> 和 <code>kmod-tun</code>"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:959
 #: htdocs/luci-static/resources/view/homeproxy/server.js:322
