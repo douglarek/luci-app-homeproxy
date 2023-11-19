@@ -44,6 +44,7 @@ if (wan_dns.exitcode === 0 && trim(wan_dns.stdout))
 else
 	wan_dns = (routing_mode in ['proxy_mainland_china', 'global']) ? '208.67.222.222' : '114.114.114.114';
 
+const mixed_port = uci.get(uciconfig, uciinfra, 'mixed_port') || '5330';
 const dns_port = uci.get(uciconfig, uciinfra, 'dns_port') || '5333';
 
 const clash_dashboard_port = uci.get(uciconfig, ucimain, 'clash_dashboard_port') || '9090';
@@ -459,6 +460,16 @@ push(config.inbounds, {
 	tag: 'dns-in',
 	listen: '::',
 	listen_port: int(dns_port)
+});
+
+push(config.inbounds, {
+	type: 'mixed',
+	tag: 'mixed-in',
+	listen: '::',
+	listen_port: int(mixed_port),
+	sniff: true,
+	sniff_override_destination: (sniff_override === '1'),
+	set_system_proxy: false
 });
 
 if (match(proxy_mode, /redirect/))
