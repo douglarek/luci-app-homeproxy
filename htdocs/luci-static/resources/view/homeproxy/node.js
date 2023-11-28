@@ -1156,6 +1156,22 @@ return view.extend({
 		so.default = so.disabled;
 		so.depends('multiplex', '1');
 		so.modalonly = true;
+
+		// brutal
+		so = ss.option(form.Flag, 'multiplex_brutal', _('Enable TCP Brutal'));
+		so.default = so.disabled;
+		so.depends('multiplex', '1');
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'multiplex_brutal_up_mbps', _('Max upload speed'));
+		so.datatype = 'uinteger';
+		so.depends('multiplex_brutal', '1');
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'multiplex_brutal_down_mbps', _('Max download speed'));
+		so.datatype = 'uinteger';
+		so.depends('multiplex_brutal', '1');
+		so.modalonly = true;
 		/* Mux config end */
 
 		/* TLS config start */

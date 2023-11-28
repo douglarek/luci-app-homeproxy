@@ -207,7 +207,12 @@ function generate_outbound(node) {
 			max_connections: strToInt(node.multiplex_max_connections),
 			min_streams: strToInt(node.multiplex_min_streams),
 			max_streams: strToInt(node.multiplex_max_streams),
-			padding: (node.multiplex_padding === '1')
+			padding: (node.multiplex_padding === '1'),
+			brutal: (node.multiplex_brutal === '1') ? {
+				enabled: true,
+				up_mbps: strToInt(node.multiplex_brutal_up_mbps),
+				down_mbps: strToInt(node.multiplex_brutal_down_mbps)
+			} : null
 		} : null,
 		tls: (node.tls === '1') ? {
 			enabled: true,
