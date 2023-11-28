@@ -668,7 +668,7 @@ msgstr "启用 PQ 签名方案。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1161
 msgid "Enable TCP Brutal"
-msgstr ""
+msgstr "启用 TCP Brutal"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1343
 #: htdocs/luci-static/resources/view/homeproxy/server.js:672
