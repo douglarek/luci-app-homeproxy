@@ -153,7 +153,7 @@ msgstr "Android"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:538
 msgid "Any"
-msgstr ""
+msgstr "任何"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1248
 msgid "Append self-signed certificate"
@@ -1907,7 +1907,7 @@ msgstr "系统"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:625
 #: htdocs/luci-static/resources/view/homeproxy/client.js:819
 msgid "System DNS"
-msgstr ""
+msgstr "系统 DNS"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:450
 #: htdocs/luci-static/resources/view/homeproxy/client.js:716
@@ -2042,6 +2042,11 @@ msgid ""
 "source_ip_cidr)</code> &&<br/><code>(source_port || source_port_range)</"
 "code> &&<br/><code>other fields</code>."
 msgstr ""
+"默认规则使用以下匹配逻辑：<br/><code>(domain || domain_suffix || "
+"domain_keyword || domain_regex || geosite)</code> &&<br/><code>(port || "
+"port_range)</code> &&<br/><code>(source_geoip || source_ip_cidr)</code> "
+"&&<br/><code>(source_port || source_port_range)</code> &&<br/><code>other "
+"fields</code>."
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:650
 msgid ""
