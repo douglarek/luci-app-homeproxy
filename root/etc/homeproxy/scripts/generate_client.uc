@@ -411,12 +411,15 @@ if (!isEmpty(main_node)) {
 	});
 
 	/* DNS rules */
-	// avoid dns loop
+	let domains = [];
+	uci.foreach(uciconfig, ucinode, (cfg) => {
+                if (cfg.type !=='selector' && cfg.type !=='urltest' && validateHostname(cfg.address))
+			push(domains, cfg.address);
+	});
 	push(config.dns.rules, {
-		outbound: 'any',
+		domain: domains,
 		server: 'default-dns'
 	});
-
 	uci.foreach(uciconfig, ucidnsrule, (cfg) => {
 		if (cfg.enabled !== '1')
 			return;
