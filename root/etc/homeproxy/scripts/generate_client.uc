@@ -271,6 +271,9 @@ function get_outbound(cfg) {
 		return null;
 
 	if (type(cfg) === 'array') {
+		if ('any-out' in cfg)
+			return 'any';
+
 		let outbounds = [];
 		for (let i in cfg)
 			push(outbounds, get_outbound(i));
