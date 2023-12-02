@@ -156,6 +156,10 @@ function generate_outbound(node) {
 		/* Hysteria(2) */
 		up_mbps: strToInt(node.hysteria_up_mbps),
 		down_mbps: strToInt(node.hysteria_down_mbps),
+		obfs: node.hysteria_obfs_type ? {
+			type: node.hysteria_obfs_type,
+			password: node.hysteria_obfs_password
+		} : node.hysteria_obfs_password,
 		/* obfs: see below */
 		auth: (node.hysteria_auth_type === 'base64') ? node.hysteria_auth_payload : null,
 		auth_str: (node.hysteria_auth_type === 'string') ? node.hysteria_auth_payload : null,
@@ -165,17 +169,9 @@ function generate_outbound(node) {
 		network: node.hysteria_network,
 		brutal_debug: strToBool(node.hysteria_brutal_debug),
 		/* Shadowsocks */
-		method: node.shadowsocks_encrypt_method || node.shadowsocksr_encrypt_method,
+		method: node.shadowsocks_encrypt_method,
 		plugin: node.shadowsocks_plugin,
 		plugin_opts: node.shadowsocks_plugin_opts,
-		/* ShadowsocksR */
-		protocol: node.shadowsocksr_protocol,
-		protocol_param: node.shadowsocksr_protocol_param,
-		obfs: node.shadowsocksr_obfs ? node.shadowsocksr_obfs : node.hysteria_obfs_type ? {
-			type: node.hysteria_obfs_type,
-			password: node.hysteria_obfs_password
-		} : node.hysteria_obfs_password,
-		obfs_param: node.shadowsocksr_obfs_param,
 		/* ShadowTLS / Socks */
 		version: (node.type === 'shadowtls') ? strToInt(node.shadowtls_version) : ((node.type === 'socks') ? node.socks_version : null),
 		/* Tuic */
