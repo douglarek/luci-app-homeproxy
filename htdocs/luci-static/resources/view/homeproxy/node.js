@@ -519,6 +519,7 @@ return view.extend({
 		so.value('shadowsocks', _('Shadowsocks'));
 		so.value('shadowtls', _('ShadowTLS'));
 		so.value('socks', _('Socks'));
+		so.value('ssh', _('SSH'));
 		so.value('trojan', _('Trojan'));
 		if (features.with_quic)
 			so.value('tuic', _('Tuic'));
@@ -543,12 +544,14 @@ return view.extend({
 		so = ss.option(form.Value, 'username', _('Username'));
 		so.depends('type', 'http');
 		so.depends('type', 'socks');
+		so.depends('type', 'ssh');
 		so.modalonly = true;
 
 		so = ss.option(form.Value, 'password', _('Password'));
 		so.password = true;
 		so.depends('type', 'http');
 		so.depends('type', 'shadowsocks');
+		so.depends('type', 'ssh');
 		so.depends('type', 'trojan');
 		so.depends('type', 'tuic');
 		so.depends('type', 'hysteria2');
@@ -726,6 +729,32 @@ return view.extend({
 		so.depends('type', 'socks');
 		so.rmempty = false;
 		so.modalonly = true;
+
+		/* SSH config start */
+		so = ss.option(form.Value, 'ssh_client_version', _('Client version'),
+			_('Random version will be used if empty.'));
+		so.depends('type', 'ssh');
+		so.modalonly = true;
+
+		so = ss.option(form.DynamicList, 'ssh_host_key', _('Host key'),
+			_('Accept any if empty.'));
+		so.depends('type', 'ssh');
+		so.modalonly = true;
+
+		so = ss.option(form.DynamicList, 'ssh_host_key_algo', _('Host key algorithms'))
+		so.depends('type', 'ssh');
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'ssh_priv_key', _('Private key'));
+		so.password = true;
+		so.depends('type', 'ssh');
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'ssh_priv_key_pp', _('Private key passphrase'));
+		so.password = true;
+		so.depends('type', 'ssh');
+		so.modalonly = true;
+		/* SSH config end */
 
 		/* TUIC config start */
 		so = ss.option(form.Value, 'uuid', _('UUID'));
