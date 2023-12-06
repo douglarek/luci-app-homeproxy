@@ -44,7 +44,7 @@ msgstr "API 令牌"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:741
 msgid "Accept any if empty."
-msgstr ""
+msgstr "留空则不校验。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:861
 msgid "Access Control"
@@ -340,7 +340,7 @@ msgstr "客户端设置"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:735
 msgid "Client version"
-msgstr ""
+msgstr "客户端版本"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:161
 msgid "CloudFlare Public DNS (1.1.1.1)"
@@ -582,11 +582,11 @@ msgstr "域名"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:443
 msgid "Download bandwidth"
-msgstr ""
+msgstr "下载带宽"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:444
 msgid "Download bandwidth in Mbps."
-msgstr ""
+msgstr "下载带宽（单位：Mbps）。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1357
 msgid ""
@@ -694,7 +694,7 @@ msgstr "启用 TCP Brutal"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:438
 msgid "Enable TCP Brutal congestion control algorithm"
-msgstr ""
+msgstr "启用 TCP Brutal 拥塞控制算法"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1285
 #: htdocs/luci-static/resources/view/homeproxy/server.js:714
@@ -891,7 +891,7 @@ msgstr "当身份验证失败时HTTP3服务器的行为"
 #: htdocs/luci-static/resources/view/homeproxy/node.js:899
 #: htdocs/luci-static/resources/view/homeproxy/server.js:327
 msgid "HTTPUpgrade"
-msgstr ""
+msgstr "HTTPUpgrade"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:657
 msgid "Handshake server address"
@@ -931,11 +931,11 @@ msgstr "主机名"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:740
 msgid "Host key"
-msgstr ""
+msgstr "主机密钥"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:745
 msgid "Host key algorithms"
-msgstr ""
+msgstr "主机密钥算法"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:286
 msgid ""
@@ -1037,7 +1037,7 @@ msgstr "导入分享链接"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:589
 msgid "Independent cache per server"
-msgstr ""
+msgstr "独立缓存"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:867
 msgid "Interface Control"
@@ -1164,7 +1164,7 @@ msgstr "主节点"
 msgid ""
 "Make each DNS server's cache independent for special purposes. If enabled, "
 "will slightly degrade performance."
-msgstr ""
+msgstr "独立缓存每个 DNS 服务器的结果以供特殊用途。启用后会略微降低性能。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:484
 msgid "Match GeoIP."
@@ -1225,7 +1225,7 @@ msgstr "匹配进程路径。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:728
 msgid "Match query type."
-msgstr ""
+msgstr "匹配请求类型。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:480
 #: htdocs/luci-static/resources/view/homeproxy/client.js:776
@@ -1554,7 +1554,7 @@ msgstr "私钥"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:754
 msgid "Private key passphrase"
-msgstr ""
+msgstr "私钥指纹"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:517
 #: htdocs/luci-static/resources/view/homeproxy/client.js:794
@@ -1651,7 +1651,7 @@ msgstr "QUIC 流接收窗口"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:727
 msgid "Query type"
-msgstr ""
+msgstr "请求类型"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1263
 #: htdocs/luci-static/resources/view/homeproxy/server.js:636
@@ -1682,7 +1682,7 @@ msgstr "随机"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:736
 msgid "Random version will be used if empty."
-msgstr ""
+msgstr "如留空，则使用随机版本。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1245
 msgid "Randomized"
@@ -1738,11 +1738,11 @@ msgstr "资源管理"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:853
 msgid "Rewrite TTL"
-msgstr ""
+msgstr "重写 TTL"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:854
 msgid "Rewrite TTL in DNS responses."
-msgstr ""
+msgstr "在 DNS 响应中重写 TTL。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:328
 msgid "Routing Nodes"
@@ -1774,7 +1774,7 @@ msgstr "路由规则"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:523
 msgid "SSH"
-msgstr ""
+msgstr "SSH"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:451
 #: htdocs/luci-static/resources/view/homeproxy/client.js:742
@@ -1905,7 +1905,7 @@ msgid ""
 "frame, so if there is no other traffic on the connection, the health check "
 "will be executed every interval."
 msgstr ""
-"如果连接上没有收到任何帧，指定一段时间（单位秒）后将使用 PING 帧执行健康检"
+"如果连接上没有收到任何帧，指定一段时间（单位：秒）后将使用 PING 帧执行健康检"
 "查。<br/>需要注意的是，PING 响应被视为已接收的帧，因此如果连接上没有其他流"
 "量，则健康检查将在每个间隔执行一次。"
 
@@ -2097,6 +2097,11 @@ msgid ""
 "><code>(source_geoip || source_ip_cidr)</code> &&<br/><code>(source_port || "
 "source_port_range)</code> &&<br/><code>other fields</code>."
 msgstr ""
+"默认规则使用以下匹配逻辑：<br/><code>(domain || domain_suffix || "
+"domain_keyword || domain_regex || geosite || geoip || ip_cidr)</code> &&<br/"
+"><code>(port || port_range)</code> &&<br/><code>(source_geoip || "
+"source_ip_cidr)</code> &&<br/><code>(source_port || source_port_range)</"
+"code> &&<br/><code>其他字段</code>."
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:710
 msgid ""
@@ -2340,11 +2345,11 @@ msgstr "使用代理更新"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:449
 msgid "Upload bandwidth"
-msgstr ""
+msgstr "上传带宽"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:450
 msgid "Upload bandwidth in Mbps."
-msgstr ""
+msgstr "上传带宽（单位：Mbps）。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1203
 #: htdocs/luci-static/resources/view/homeproxy/server.js:680
@@ -2604,37 +2609,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "Obfs"
-#~ msgstr "混淆协议"
-
-#~ msgid "Obfs param"
-#~ msgstr "混淆参数"
-
-#~ msgid "Protocol param"
-#~ msgstr "协议参数"
-
-#~ msgid "ShadowsocksR"
-#~ msgstr "ShadowsocksR"
-
-#~ msgid ""
-#~ "The default rule uses the following matching logic:<br/><code>(domain || "
-#~ "domain_suffix || domain_keyword || domain_regex || geosite || geoip || "
-#~ "ip_cidr)</code> &&<br/><code>(source_geoip || source_ip_cidr)</code> "
-#~ "&&<br/><code>other fields</code>."
-#~ msgstr ""
-#~ "默认规则使用以下匹配逻辑：<br/><code>(domain || domain_suffix || "
-#~ "domain_keyword || domain_regex || geosite || geoip || ip_cidr)</code> "
-#~ "&&<br/><code>(source_geoip || source_ip_cidr)</code> &&<br/><code>其他字段"
-#~ "</code>。"
-
-#~ msgid ""
-#~ "The default rule uses the following matching logic:<br/><code>(domain || "
-#~ "domain_suffix || domain_keyword || domain_regex || geosite || ip_cidr)</"
-#~ "code> &&<br/><code>(source_geoip || source_ip_cidr)</code> &&<br/"
-#~ "><code>other fields</code>."
-#~ msgstr ""
-#~ "默认规则使用以下匹配逻辑：<br/><br/><code>(domain || domain_suffix || "
-#~ "domain_keyword || domain_regex || geosite || ip_cidr)</code> &&<br/"
-#~ "><code>(source_geoip || source_ip_cidr)</code> &&<br/><code>其他字段</"
-#~ "code>。"
