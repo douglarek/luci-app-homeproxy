@@ -49,18 +49,18 @@ cat > "$TEMP_PKG_DIR/CONTROL/control" <<-EOF
 	SourceName: $PKG_NAME
 	Section: luci
 	SourceDateEpoch: $PKG_SOURCE_DATE_EPOCH
-	Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
+	Maintainer: Leo Douglas <douglarek@gmail.com>
 	Architecture: all
 	Installed-Size: TO-BE-FILLED-BY-IPKG-BUILD
-	Description:  The modern ImmortalWrt proxy platform for ARM64/AMD64
+	Description:  The modern ImmortalWrt proxy platform for ARM64/AMD64(forked)
 EOF
 
-svn co "https://github.com/openwrt/luci/trunk/modules/luci-base/src" "po2lmo"
-pushd "po2lmo"
+git clone "https://github.com/openwrt/luci.git" --depth=1 "luci-src"
+pushd "luci-src/modules/luci-base/src"
 make po2lmo
 ./po2lmo "$PKG_DIR/po/zh_Hans/homeproxy.po" "$TEMP_PKG_DIR/usr/lib/lua/luci/i18n/homeproxy.zh-cn.lmo"
 popd
-rm -rf "po2lmo"
+rm -rf "luci-src"
 
 echo -e '#!/bin/sh
 [ "${IPKG_NO_SCRIPT}" = "1" ] && exit 0
