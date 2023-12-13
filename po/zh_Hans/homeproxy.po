@@ -2593,15 +2593,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "Bypass mainland China"
-#~ msgstr "大陆白名单"
-
-#~ msgid "GFWList"
-#~ msgstr "GFWList"
-
-#~ msgid "Global"
-#~ msgstr "全局"
-
-#~ msgid "Only proxy mainland China"
-#~ msgstr "仅代理中国大陆"
