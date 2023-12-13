@@ -205,12 +205,12 @@ return view.extend({
 		}
 
 		o = s.taboption('routing', form.ListValue, 'routing_mode', _('Routing mode'));
-		o.value('gfwlist', _('GFWList'));
-		o.value('bypass_mainland_china', _('Bypass mainland China'));
-		o.value('proxy_mainland_china', _('Only proxy mainland China'));
+		// o.value('gfwlist', _('GFWList'));
+		// o.value('bypass_mainland_china', _('Bypass mainland China'));
+		// o.value('proxy_mainland_china', _('Only proxy mainland China'));
 		o.value('custom', _('Custom routing'));
-		o.value('global', _('Global'));
-		o.default = 'bypass_mainland_china';
+		// o.value('global', _('Global'));
+		o.default = 'custom';
 		o.rmempty = false;
 		o.onchange = function(ev, section_id, value) {
 			if (section_id && value === 'custom')
