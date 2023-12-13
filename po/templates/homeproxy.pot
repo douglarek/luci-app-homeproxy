@@ -253,10 +253,6 @@ msgstr ""
 msgid "Bypass CN traffic"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:209
-msgid "Bypass mainland China"
-msgstr ""
-
 #: htdocs/luci-static/resources/view/homeproxy/client.js:299
 msgid "Bypass mainland China traffic via firewall rules by default."
 msgstr ""
@@ -787,10 +783,6 @@ msgstr ""
 msgid "GFW list version"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:208
-msgid "GFWList"
-msgstr ""
-
 #: htdocs/luci-static/resources/view/homeproxy/client.js:908
 msgid "Gaming mode IPv4 IP-s"
 msgstr ""
@@ -818,10 +810,6 @@ msgstr ""
 #: htdocs/luci-static/resources/view/homeproxy/client.js:475
 #: htdocs/luci-static/resources/view/homeproxy/client.js:761
 msgid "Geosite"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:212
-msgid "Global"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:831
@@ -1399,10 +1387,6 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:870
 msgid "Only process traffic from specific interfaces. Leave empty for all."
-msgstr ""
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:210
-msgid "Only proxy mainland China"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:56
