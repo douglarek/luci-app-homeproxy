@@ -260,10 +260,6 @@ msgstr "全部"
 msgid "Bypass CN traffic"
 msgstr "绕过中国流量"
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:209
-msgid "Bypass mainland China"
-msgstr "大陆白名单"
-
 #: htdocs/luci-static/resources/view/homeproxy/client.js:299
 msgid "Bypass mainland China traffic via firewall rules by default."
 msgstr "默认使用防火墙规则绕过中国大陆流量。"
@@ -806,10 +802,6 @@ msgstr "GET"
 msgid "GFW list version"
 msgstr "GFW 域名列表版本"
 
-#: htdocs/luci-static/resources/view/homeproxy/client.js:208
-msgid "GFWList"
-msgstr "GFWList"
-
 #: htdocs/luci-static/resources/view/homeproxy/client.js:908
 msgid "Gaming mode IPv4 IP-s"
 msgstr "游戏模式 IPv4 地址"
@@ -838,10 +830,6 @@ msgstr "GeoSite 版本"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:761
 msgid "Geosite"
 msgstr "Geosite"
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:212
-msgid "Global"
-msgstr "全局"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:831
 msgid "Global padding"
@@ -1426,10 +1414,6 @@ msgstr "混淆类型"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:870
 msgid "Only process traffic from specific interfaces. Leave empty for all."
 msgstr "只处理来自指定接口的流量。留空表示全部。"
-
-#: htdocs/luci-static/resources/view/homeproxy/client.js:210
-msgid "Only proxy mainland China"
-msgstr "仅代理中国大陆"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:56
 msgid "Open clash dashboard"
@@ -2609,3 +2593,15 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
+
+#~ msgid "Bypass mainland China"
+#~ msgstr "大陆白名单"
+
+#~ msgid "GFWList"
+#~ msgstr "GFWList"
+
+#~ msgid "Global"
+#~ msgstr "全局"
+
+#~ msgid "Only proxy mainland China"
+#~ msgstr "仅代理中国大陆"
