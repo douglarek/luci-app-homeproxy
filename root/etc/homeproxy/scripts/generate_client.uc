@@ -336,11 +336,13 @@ config.log = {
 
 /* Clash dashboard */
 config.experimental = {
+	"cache_file": {
+		"enabled": true
+	},
 	clash_api: {
 		external_controller: '[::]:'+ clash_dashboard_port,
 		external_ui: HP_DIR + '/resources/ui',
-		external_ui_download_url: 'https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip',
-		store_selected: true
+		external_ui_download_url: 'https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip'
 	}
 };
 
