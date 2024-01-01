@@ -553,6 +553,72 @@ return view.extend({
 		so.editable = true;
 		/* Routing rules end */
 
+		/* Rule sets start */
+		s.tab('rule_set', _('Rule sets'));
+		o = s.taboption('rule_set', form.SectionValue, '_rule_set', form.GridSection, 'rule_set');
+		o.depends('routing_mode', 'custom');
+
+		ss = o.subsection;
+		ss.addremove = true;
+		ss.rowcolors = true;
+		ss.sortable = true;
+		ss.nodescriptions = true;
+		ss.modaltitle = L.bind(hp.loadModalTitle, this, _('Rule set'), _('Add a rule set'), data[0]);
+		ss.sectiontitle = L.bind(hp.loadDefaultLabel, this, data[0]);
+		ss.renderSectionAdd = L.bind(hp.renderSectionAdd, this, ss);
+
+		so = ss.option(form.Value, 'label', _('Label'));
+		so.load = L.bind(hp.loadDefaultLabel, this, data[0]);
+		so.validate = L.bind(hp.validateUniqueValue, this, data[0], 'rule_set', 'label');
+		so.modalonly = true;
+
+		so = ss.option(form.Flag, 'enabled', _('Enable'));
+		so.default = so.enabled;
+		so.rmempty = false;
+		so.editable = true;
+
+		so = ss.option(form.ListValue, 'type', _('Type'),
+			_('Type of Rule Set, <code>local</code> or <code>remote</code>.'));
+		so.value('local', _('Local'));
+		so.value('remote', _('Remote'));
+
+		so = ss.option(form.ListValue, 'format', _('Format'),
+			_('Format of Rule Set, <code>source</code> or <code>binary</code>.'));
+		so.value('source ', _('Source'));
+		so.value('binary', _('Binary'));
+
+		so = ss.option(form.Value, 'path', _('Path'),
+			_('File path of Rule Set.'));
+		so.depends('type', 'local');
+
+		so = ss.option(form.Value, 'url', _('URL'),
+			_('Download URL of Rule Set.'));
+		so.depends('type', 'remote');
+		so.modalonly = true;
+
+		so = ss.option(form.ListValue, 'outbound', _('Outbound'),
+			_('Tag of an outbound for connecting to the dns server.'));
+		so.load = function(section_id) {
+			delete this.keylist;
+			delete this.vallist;
+
+			this.value('direct-out', _('Direct'));
+			uci.sections(data[0], 'routing_node', (res) => {
+				if (res.enabled === '1')
+					this.value(res['.name'], res.label);
+			});
+
+			return this.super('load', section_id);
+		}
+		so.depends('type', 'remote');
+
+		so = ss.option(form.Value, 'update_interval', _('Update interval of Rule Set'),
+			_('1d will be used if empty.'));
+		so.default='';
+		so.depends('type', 'remote');
+		so.modalonly = true;
+		/* Rule sets end */
+
 		/* DNS settings start */
 		s.tab('dns', _('DNS Settings'));
 		o = s.taboption('dns', form.SectionValue, '_dns', form.NamedSection, 'dns', 'homeproxy');
