@@ -212,6 +212,7 @@ function generate_outbound(node) {
 		/* WireGuard */
 		system_interface: (node.type === 'wireguard') || null,
 		interface_name: (node.type === 'wireguard') ? 'wg-' + node['.name'] + '-out' : null,
+		gso: strToBool(node.wireguard_gso),
 		local_address: node.wireguard_local_address,
 		private_key: node.wireguard_private_key,
 		peer_public_key: node.wireguard_peer_public_key,
