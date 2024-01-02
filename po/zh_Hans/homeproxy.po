@@ -18,7 +18,7 @@ msgstr "移除了 %s 个节点"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:636
 msgid "1d will be used if empty."
-msgstr ""
+msgstr "留空则默认 1 天。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1242
 msgid "360"
@@ -233,7 +233,7 @@ msgstr "基于 google/gvisor。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:618
 msgid "Binary"
-msgstr ""
+msgstr "二进制"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:367
 #: htdocs/luci-static/resources/view/homeproxy/client.js:983
@@ -834,7 +834,7 @@ msgstr "流控"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:615
 msgid "Format"
-msgstr ""
+msgstr "格式"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:616
 msgid "Format of Rule Set, <code>source</code> or <code>binary</code>."
@@ -993,11 +993,11 @@ msgstr "IP CIDR"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:810
 msgid "IP Version"
-msgstr ""
+msgstr "IP 版本"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:495
 msgid "IP is private"
-msgstr ""
+msgstr "IP 是否私有"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:442
 msgid "IP version"
@@ -1177,7 +1177,7 @@ msgstr "加载中"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:612
 msgid "Local"
-msgstr ""
+msgstr "本地"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1023
 msgid "Local address"
@@ -1777,7 +1777,7 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:613
 msgid "Remote"
-msgstr ""
+msgstr "远程"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1423
 msgid "Remove %s nodes"
@@ -1952,7 +1952,7 @@ msgstr "Socks5"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:617
 msgid "Source"
-msgstr ""
+msgstr "源"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:482
 #: htdocs/luci-static/resources/view/homeproxy/client.js:864
@@ -1967,7 +1967,7 @@ msgstr "源 IP CIDR"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:505
 #: htdocs/luci-static/resources/view/homeproxy/client.js:873
 msgid "Source IP is private"
-msgstr ""
+msgstr "源 IP 是否私有"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:510
 #: htdocs/luci-static/resources/view/homeproxy/client.js:878
@@ -2350,7 +2350,7 @@ msgstr "类型"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:611
 msgid "Type of Rule Set, <code>local</code> or <code>remote</code>."
-msgstr "规则集类型，<code>local</code> 或 <code>remote</code>."
+msgstr "规则集类型，<code>本地</code> 或 <code>远程</code>。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:458
 #: htdocs/luci-static/resources/view/homeproxy/client.js:822
