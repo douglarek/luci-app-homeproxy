@@ -84,7 +84,7 @@ msgstr "新增路由规则"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:596
 msgid "Add a rule set"
-msgstr ""
+msgstr "添加一个规则集"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:88
 msgid "Add a server"
@@ -607,7 +607,7 @@ msgstr "域名"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:625
 msgid "Download URL of Rule Set."
-msgstr ""
+msgstr "规则集下载地址"
 
 #: htdocs/luci-static/resources/view/homeproxy/server.js:443
 msgid "Download bandwidth"
@@ -813,7 +813,7 @@ msgstr "上传 %s 失败，错误：%s。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:621
 msgid "File path of Rule Set."
-msgstr ""
+msgstr "规则集文件路径。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1366
 msgid "Filter keywords"
@@ -838,7 +838,7 @@ msgstr ""
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:616
 msgid "Format of Rule Set, <code>source</code> or <code>binary</code>."
-msgstr ""
+msgstr "规则集格式，<code>source</code> 或 <code>binary</code>。"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:964
 msgid "GET"
@@ -1205,7 +1205,7 @@ msgstr "主节点"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:558
 msgid "Make <code>ipcidr</code> in rule sets match the source IP."
-msgstr ""
+msgstr "在规则集中使 <code>ipcidr</code> 匹配源 IP。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:679
 msgid ""
@@ -1248,12 +1248,12 @@ msgstr "匹配 geosite。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:496
 msgid "Match non-public IP."
-msgstr ""
+msgstr "匹配非公开 IP。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:506
 #: htdocs/luci-static/resources/view/homeproxy/client.js:874
 msgid "Match non-public source IP."
-msgstr ""
+msgstr "匹配非公开源 IP。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:921
 msgid "Match outbound."
@@ -1286,7 +1286,7 @@ msgstr "匹配请求类型。"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:543
 #: htdocs/luci-static/resources/view/homeproxy/client.js:901
 msgid "Match rule set."
-msgstr ""
+msgstr "匹配规则集。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:483
 #: htdocs/luci-static/resources/view/homeproxy/client.js:865
@@ -1840,11 +1840,11 @@ msgstr "路由规则"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:596
 #: htdocs/luci-static/resources/view/homeproxy/client.js:900
 msgid "Rule set"
-msgstr ""
+msgstr "规则集"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:557
 msgid "Rule set IPCIDR match source"
-msgstr ""
+msgstr "规则集 IPCIDR 匹配源"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:523
 msgid "SSH"
@@ -2182,6 +2182,11 @@ msgid ""
 "&&<br/><code>(source_port || source_port_range)</code> &&<br/><code>other "
 "fields</code>."
 msgstr ""
+"默认规则使用以下匹配逻辑：<br/><code>(domain || "
+"domain_suffix || domain_keyword || domain_regex || geosite || geoip || "
+"ip_cidr || ip_is_private)</code> &&<br/><code>(port || port_range)</code> "
+"&&<br/><code>(source_geoip || source_ip_cidr || source_ip_is_private)</code> "
+"&&<br/><code>(source_port || source_port_range)</code> &&<br/><code>其他字段</code>。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:799
 msgid ""
@@ -2191,6 +2196,11 @@ msgid ""
 "source_ip_cidr || source_ip_is_private)</code> &&<br/><code>(source_port || "
 "source_port_range)</code> &&<br/><code>other fields</code>."
 msgstr ""
+"默认规则使用以下匹配逻辑：<br/><code>(domain || "
+"domain_suffix || domain_keyword || domain_regex || geosite)</code> &&<br/"
+"><code>(port || port_range)</code> &&<br/><code>(source_geoip || "
+"source_ip_cidr || source_ip_is_private)</code> &&<br/><code>(source_port || "
+"source_port_range)</code> &&<br/><code>其他字段</code>。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:745
 msgid ""
@@ -2340,7 +2350,7 @@ msgstr "类型"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:611
 msgid "Type of Rule Set, <code>local</code> or <code>remote</code>."
-msgstr ""
+msgstr "规则集类型，<code>local</code> 或 <code>remote</code>."
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:458
 #: htdocs/luci-static/resources/view/homeproxy/client.js:822
@@ -2372,11 +2382,11 @@ msgstr "UDP 中继模式"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:624
 msgid "URL"
-msgstr ""
+msgstr "网址"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:532
 msgid "URLTest"
-msgstr ""
+msgstr "测速"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:872
 msgid "URLTest interval"
@@ -2417,7 +2427,7 @@ msgstr "更新失败。"
 
 #: htdocs/luci-static/resources/view/homeproxy/client.js:635
 msgid "Update interval of Rule Set"
-msgstr ""
+msgstr "规则集更新周期"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1393
 msgid "Update nodes from subscriptions"
@@ -2701,29 +2711,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid ""
-#~ "The default rule uses the following matching logic:<br/><code>(domain || "
-#~ "domain_suffix || domain_keyword || domain_regex || geosite || geoip || "
-#~ "ip_cidr)</code> &&<br/><code>(port || port_range)</code> &&<br/"
-#~ "><code>(source_geoip || source_ip_cidr)</code> &&<br/><code>(source_port "
-#~ "|| source_port_range)</code> &&<br/><code>other fields</code>."
-#~ msgstr ""
-#~ "默认规则使用以下匹配逻辑：<br/><code>(domain || domain_suffix || "
-#~ "domain_keyword || domain_regex || geosite || geoip || ip_cidr)</code> "
-#~ "&&<br/><code>(port || port_range)</code> &&<br/><code>(source_geoip || "
-#~ "source_ip_cidr)</code> &&<br/><code>(source_port || source_port_range)</"
-#~ "code> &&<br/><code>其他字段</code>."
-
-#~ msgid ""
-#~ "The default rule uses the following matching logic:<br/><code>(domain || "
-#~ "domain_suffix || domain_keyword || domain_regex || geosite)</code> &&<br/"
-#~ "><code>(port || port_range)</code> &&<br/><code>(source_geoip || "
-#~ "source_ip_cidr)</code> &&<br/><code>(source_port || source_port_range)</"
-#~ "code> &&<br/><code>other fields</code>."
-#~ msgstr ""
-#~ "默认规则使用以下匹配逻辑：<br/><code>(domain || domain_suffix || "
-#~ "domain_keyword || domain_regex || geosite)</code> &&<br/><code>(port || "
-#~ "port_range)</code> &&<br/><code>(source_geoip || source_ip_cidr)</code> "
-#~ "&&<br/><code>(source_port || source_port_range)</code> &&<br/><code>other "
-#~ "fields</code>."
