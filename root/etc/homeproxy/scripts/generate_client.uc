@@ -33,7 +33,8 @@ const ucidnssetting = 'dns',
 
 const uciroutingsetting = 'routing',
       uciroutingnode = 'routing_node',
-      uciroutingrule = 'routing_rule';
+      uciroutingrule = 'routing_rule',
+	  uciruleset = 'rule_set';
 
 const ucinode = 'node';
 
@@ -212,6 +213,7 @@ function generate_outbound(node) {
 		/* WireGuard */
 		system_interface: (node.type === 'wireguard') || null,
 		interface_name: (node.type === 'wireguard') ? 'wg-' + node['.name'] + '-out' : null,
+		gso: strToBool(node.wireguard_gso),
 		local_address: node.wireguard_local_address,
 		private_key: node.wireguard_private_key,
 		peer_public_key: node.wireguard_peer_public_key,
@@ -284,6 +286,23 @@ function generate_outbound(node) {
 	return outbound;
 }
 
+function get_ruleset(cfg) {
+	if (isEmpty(cfg))
+		return null;
+
+	if (type(cfg) === 'array') {
+		let rs = [];
+		for (let i in cfg)
+			push(rs, get_ruleset(i));
+		return rs;
+	}
+
+	const label = uci.get(uciconfig, cfg, 'label');
+	if (isEmpty(label))
+		die(sprintf("%s's label is missing, please check your configuration.", rs));
+	return label;
+}
+
 function get_outbound(cfg) {
 	if (isEmpty(cfg))
 		return null;
@@ -336,11 +355,13 @@ config.log = {
 
 /* Clash dashboard */
 config.experimental = {
+	"cache_file": {
+		"enabled": true
+	},
 	clash_api: {
 		external_controller: '[::]:'+ clash_dashboard_port,
 		external_ui: HP_DIR + '/resources/ui',
-		external_ui_download_url: 'https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip',
-		store_selected: true
+		external_ui_download_url: 'https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip'
 	}
 };
 
@@ -456,12 +477,14 @@ if (!isEmpty(main_node)) {
 			port_range: cfg.port_range,
 			source_geoip: cfg.source_geoip,
 			source_ip_cidr: cfg.source_ip_cidr,
+			source_ip_is_private: strToBool(cfg.source_ip_is_private),
 			source_port: parse_port(cfg.source_port),
 			source_port_range: cfg.source_port_range,
 			process_name: cfg.process_name,
 			process_path: cfg.process_path,
 			user: cfg.user,
-			invert: (cfg.invert === '1') || null,
+			rule_set: get_ruleset(cfg.rule_set),
+			invert: strToBool(cfg.invert),
 			outbound: get_outbound(cfg.outbound),
 			server: get_resolver(cfg.server),
 			disable_cache: (cfg.dns_disable_cache === '1'),
@@ -593,6 +616,7 @@ config.route = {
 			outbound: 'dns-out'
 		}
 	],
+	rule_set: [],
 	auto_detect_interface: isEmpty(default_interface) ? true : null,
 	default_interface: default_interface
 };
@@ -631,7 +655,9 @@ if (!isEmpty(main_node)) {
 			source_geoip: cfg.source_geoip,
 			geoip: cfg.geoip,
 			source_ip_cidr: cfg.source_ip_cidr,
+			ip_is_private: strToBool(cfg.ip_is_private),
 			ip_cidr: cfg.ip_cidr,
+			source_ip_is_private: strToBool(cfg.source_ip_is_private),
 			source_port: parse_port(cfg.source_port),
 			source_port_range: cfg.source_port_range,
 			port: parse_port(cfg.port),
@@ -639,7 +665,9 @@ if (!isEmpty(main_node)) {
 			process_name: cfg.process_name,
 			process_path: cfg.process_path,
 			user: cfg.user,
-			invert: (cfg.invert === '1') || null,
+			rule_set: get_ruleset(cfg.rule_set),
+			rule_set_ipcidr_match_source: strToBool(cfg.rule_set_ipcidr_match_source),
+			invert: strToBool(cfg.invert),
 			outbound: get_outbound(cfg.outbound)
 		});
 	});
@@ -647,6 +675,22 @@ if (!isEmpty(main_node)) {
 	config.route.final = get_outbound(default_outbound);
 }
 /* Routing rules end */
+
+/* Rule set start */
+uci.foreach(uciconfig, uciruleset, (cfg) => {
+	if (cfg.enabled !== '1')
+		return null;
+
+	push(config.route.rule_set, {
+		"type": cfg.type,
+		"tag": cfg.label,
+		"format": cfg.format,
+		"path": cfg.path,
+		"url": cfg.url,
+		"download_detour": uci.get(uciconfig, cfg.outbound, 'label')
+	});
+});
+/* Rule set end */
 
 system('mkdir -p ' + RUN_DIR);
 writefile(RUN_DIR + '/sing-box-c.json', sprintf('%.J\n', removeBlankAttrs(config)));
