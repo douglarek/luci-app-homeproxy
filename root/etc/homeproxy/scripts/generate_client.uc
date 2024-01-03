@@ -237,7 +237,7 @@ function generate_outbound(node) {
 		tls: (node.tls === '1') ? {
 			enabled: true,
 			server_name: node.tls_sni,
-			insecure: (node.tls_insecure === '1'),
+			insecure: strToBool(node.tls_insecure),
 			alpn: node.tls_alpn,
 			min_version: node.tls_min_version,
 			max_version: node.tls_max_version,
@@ -347,7 +347,6 @@ const config = {};
 
 /* Log */
 config.log = {
-	disabled: false,
 	level: 'warn',
 	output: RUN_DIR + '/sing-box-c.log',
 	timestamp: true
@@ -386,9 +385,9 @@ config.dns = {
 	],
 	rules: [],
 	strategy: dns_default_strategy,
-	disable_cache: (dns_disable_cache === '1'),
-	disable_expire: (dns_disable_cache_expire === '1'),
-	independent_cache: (dns_independent_cache === '1')
+	disable_cache: strToBool(dns_disable_cache),
+	disable_expire: strToBool(dns_disable_cache_expire),
+	independent_cache: strToBool(dns_independent_cache)
 };
 
 if (!isEmpty(main_node)) {
@@ -487,7 +486,7 @@ if (!isEmpty(main_node)) {
 			invert: strToBool(cfg.invert),
 			outbound: get_outbound(cfg.outbound),
 			server: get_resolver(cfg.server),
-			disable_cache: (cfg.dns_disable_cache === '1'),
+			disable_cache: strToBool(cfg.dns_disable_cache),
 			rewrite_ttl: strToInt(cfg.rewrite_ttl)
 		});
 	});
@@ -515,8 +514,7 @@ push(config.inbounds, {
 	listen: '::',
 	listen_port: int(mixed_port),
 	sniff: true,
-	sniff_override_destination: (sniff_override === '1'),
-	set_system_proxy: false
+	sniff_override_destination: (sniff_override === '1')
 });
 
 if (match(proxy_mode, /redirect/))
