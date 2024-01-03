@@ -354,8 +354,9 @@ config.log = {
 
 /* Clash dashboard */
 config.experimental = {
-	"cache_file": {
-		"enabled": true
+	cache_file: {
+		enabled: true,
+		path: HP_DIR + '/resources/cache.db'
 	},
 	clash_api: {
 		external_controller: '[::]:'+ clash_dashboard_port,
