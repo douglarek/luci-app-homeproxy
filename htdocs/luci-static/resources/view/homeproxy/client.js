@@ -620,6 +620,7 @@ return view.extend({
 		so = ss.option(form.Value, 'path', _('Path'),
 			_('File path of Rule Set.'));
 		so.depends('type', 'local');
+		so.modalonly = true;
 
 		so = ss.option(form.Value, 'url', _('URL'),
 			_('Download URL of Rule Set.'));
@@ -631,6 +632,7 @@ return view.extend({
 		for (var i in proxy_nodes)
 			so.value(i, proxy_nodes[i]);
 		so.depends('type', 'remote');
+		so.modalonly = true;
 
 		so = ss.option(form.Value, 'update_interval', _('Update interval of Rule Set'),
 			_('1d will be used if empty.'));
