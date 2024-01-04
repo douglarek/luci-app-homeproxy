@@ -173,6 +173,8 @@ function parse_uri(uri) {
 				tls_insecure: params.insecure ? '1' : '0',
 				tls_sni: params.sni
 			};
+
+			break;
 		case 'socks':
 		case 'socks4':
 		case 'socks4a':
