@@ -2696,15 +2696,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "China list version"
-#~ msgstr "大陆域名列表版本"
-
-#~ msgid "GFW list version"
-#~ msgstr "GFW 域名列表版本"
-
-#~ msgid "GeoIP version"
-#~ msgstr "GeoIP 版本"
-
-#~ msgid "GeoSite version"
-#~ msgstr "GeoSite 版本"
