@@ -621,7 +621,7 @@ return view.extend({
 
 		so = ss.option(form.ListValue, 'format', _('Format'),
 			_('Format of Rule Set, <code>source</code> or <code>binary</code>.'));
-		so.value('source ', _('Source'));
+		so.value('source', _('Source'));
 		so.value('binary', _('Binary'));
 
 		so = ss.option(form.Value, 'path', _('Path'),
