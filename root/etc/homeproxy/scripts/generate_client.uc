@@ -605,7 +605,44 @@ config.route = {
 			outbound: 'dns-out'
 		}
 	],
-	rule_set: [],
+	rule_set: [
+		{
+			"type": "remote",
+			"tag": "geosite-netflix",
+			"format": "binary",
+			"url": "https://raw.githubusercontent.com/douglarek/sing-geosite/rule-set/geosite-netflix.srs"
+		},
+		{
+			"type": "remote",
+			"tag": "geoip-netflix",
+			"format": "binary",
+			"url": "https://raw.githubusercontent.com/douglarek/sing-geoip/rule-set/geoip-netflix.srs"
+		},
+		{
+			"type": "remote",
+			"tag": "geosite-microsoft@cn",
+			"format": "binary",
+			"url": "https://raw.githubusercontent.com/douglarek/sing-geosite/rule-set/geosite-microsoft@cn.srs"
+		},
+		{
+			"type": "remote",
+			"tag": "geosite-cn",
+			"format": "binary",
+			"url": "https://raw.githubusercontent.com/douglarek/sing-geosite/rule-set/geosite-cn.srs"
+		},
+		{
+			"type": "remote",
+			"tag": "geoip-cn",
+			"format": "binary",
+			"url": "https://raw.githubusercontent.com/douglarek/sing-geoip/rule-set/geoip-cn.srs"
+		},
+		{
+			"type": "remote",
+			"tag": "geoip-private",
+			"format": "binary",
+			"url": "https://raw.githubusercontent.com/douglarek/sing-geoip/rule-set/geoip-private.srs"
+		}
+	],
 	auto_detect_interface: isEmpty(default_interface) ? true : null,
 	default_interface: default_interface
 };
@@ -666,18 +703,30 @@ if (!isEmpty(main_node)) {
 /* Routing rules end */
 
 /* Rule set start */
+const rule_set_ori = [];
+for (let i in config.route.rule_set) {
+	push(rule_set_ori, i);
+}
 uci.foreach(uciconfig, uciruleset, (cfg) => {
 	if (cfg.enabled !== '1')
 		return null;
 
-	push(config.route.rule_set, {
+	const rs = {
 		"type": cfg.type,
 		"tag": cfg.label,
 		"format": cfg.format,
 		"path": cfg.path,
 		"url": cfg.url,
 		"download_detour": uci.get(uciconfig, cfg.outbound, 'label')
-	});
+	};
+
+	for (let i in rule_set_ori) {
+		if (i === cfg.label) {
+			config.route.rule_set[i] = rs;
+		} else {
+			push(config.route.rule_set, rs);
+		}
+	}
 });
 /* Rule set end */
 

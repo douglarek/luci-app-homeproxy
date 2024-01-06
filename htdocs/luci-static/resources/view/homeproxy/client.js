@@ -137,6 +137,9 @@ return view.extend({
 					String.format('[%s]', nodeaddr) : nodeaddr) + ':' + nodeport));
 		});
 
+		/* Homeproxy built-in rule-set */
+		const hp_rule_set = ['geoip-cn', 'geoip-private', 'geosite-cn', 'geosite-microsoft@cn', 'geoip-netflix', 'geosite-netflix'];
+
 		s = m.section(form.NamedSection, 'config', 'homeproxy');
 
 		s.tab('routing', _('Routing Settings'));
@@ -545,6 +548,10 @@ return view.extend({
 			delete this.keylist;
 			delete this.vallist;
 
+			for (let i in hp_rule_set) {
+				this.value(hp_rule_set[i], hp_rule_set[i]);
+			}
+
 			uci.sections(data[0], 'rule_set', (res) => {
 				if (res.enabled === '1')
 					this.value(res['.name'], res.label);
@@ -631,12 +638,13 @@ return view.extend({
 			_('Tag of an outbound for connecting to the dns server.'));
 		for (var i in proxy_nodes)
 			so.value(i, proxy_nodes[i]);
+		so.default = '';
 		so.depends('type', 'remote');
 		so.modalonly = true;
 
 		so = ss.option(form.Value, 'update_interval', _('Update interval of Rule Set'),
 			_('1d will be used if empty.'));
-		so.default='';
+		so.default = '';
 		so.depends('type', 'remote');
 		so.modalonly = true;
 		/* Rule set end */
@@ -904,6 +912,10 @@ return view.extend({
 		so.load = function(section_id) {
 			delete this.keylist;
 			delete this.vallist;
+
+			for (let i in hp_rule_set) {
+				this.value(hp_rule_set[i], hp_rule_set[i]);
+			}
 
 			uci.sections(data[0], 'rule_set', (res) => {
 				if (res.enabled === '1')
