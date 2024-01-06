@@ -184,6 +184,8 @@ return view.extend({
 	render: function(data) {
 		var m, s, o;
 		var routing_mode = uci.get(data[0], 'config', 'routing_mode') || 'bypass_mainland_china';
+		var bypass_cn_traffic = uci.get(data[0], 'routing', 'bypass_cn_traffic') || '0';
+		var ipv6_support = uci.get(data[0], 'config', 'ipv6_support') || '0';
 
 		m = new form.Map('homeproxy');
 
@@ -214,13 +216,17 @@ return view.extend({
 		// 	o.rawhtml = true;
 		// }
 
-		o = s.option(form.DummyValue, '_china_ip4_version', _('China IPv4 list version'));
-		o.cfgvalue = function() { return getResVersion(this, 'china_ip4') };
-		o.rawhtml = true;
+		if (bypass_cn_traffic === '1') {
+			o = s.option(form.DummyValue, '_china_ip4_version', _('China IPv4 list version'));
+			o.cfgvalue = function() { return getResVersion(this, 'china_ip4') };
+			o.rawhtml = true;
 
-		o = s.option(form.DummyValue, '_china_ip6_version', _('China IPv6 list version'));
-		o.cfgvalue = function() { return getResVersion(this, 'china_ip6') };
-		o.rawhtml = true;
+			if (ipv6_support === '1') {
+				o = s.option(form.DummyValue, '_china_ip6_version', _('China IPv6 list version'));
+				o.cfgvalue = function() { return getResVersion(this, 'china_ip6') };
+				o.rawhtml = true;
+			}
+		}
 
 		// o = s.option(form.DummyValue, '_china_list_version', _('China list version'));
 		// o.cfgvalue = function() { return getResVersion(this, 'china_list') };
