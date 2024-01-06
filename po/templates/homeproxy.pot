@@ -211,7 +211,7 @@ msgstr ""
 msgid "BBR"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:193
+#: htdocs/luci-static/resources/view/homeproxy/status.js:195
 msgid "BaiDu"
 msgstr ""
 
@@ -302,11 +302,11 @@ msgstr ""
 msgid "China DNS server"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:217
+#: htdocs/luci-static/resources/view/homeproxy/status.js:220
 msgid "China IPv4 list version"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:221
+#: htdocs/luci-static/resources/view/homeproxy/status.js:225
 msgid "China IPv6 list version"
 msgstr ""
 
@@ -340,7 +340,7 @@ msgstr ""
 msgid "Cisco Public DNS (208.67.222.222)"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:203
+#: htdocs/luci-static/resources/view/homeproxy/status.js:205
 msgid "Clash dashboard version"
 msgstr ""
 
@@ -389,7 +389,7 @@ msgstr ""
 msgid "Congestion control algorithm"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:190
+#: htdocs/luci-static/resources/view/homeproxy/status.js:192
 msgid "Connection check"
 msgstr ""
 
@@ -862,7 +862,7 @@ msgstr ""
 msgid "Global settings"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:196
+#: htdocs/luci-static/resources/view/homeproxy/status.js:198
 msgid "Google"
 msgstr ""
 
@@ -908,7 +908,7 @@ msgstr ""
 #: htdocs/luci-static/resources/view/homeproxy/client.js:57
 #: htdocs/luci-static/resources/view/homeproxy/client.js:59
 #: htdocs/luci-static/resources/view/homeproxy/client.js:112
-#: htdocs/luci-static/resources/view/homeproxy/status.js:237
+#: htdocs/luci-static/resources/view/homeproxy/status.js:243
 #: root/usr/share/luci/menu.d/luci-app-homeproxy.json:3
 msgid "HomeProxy"
 msgstr ""
@@ -1753,7 +1753,7 @@ msgstr ""
 msgid "Resolve strategy"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:200
+#: htdocs/luci-static/resources/view/homeproxy/status.js:202
 msgid "Resources management"
 msgstr ""
 
@@ -2558,11 +2558,11 @@ msgstr ""
 msgid "private key"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:240
+#: htdocs/luci-static/resources/view/homeproxy/status.js:246
 msgid "sing-box client"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/homeproxy/status.js:243
+#: htdocs/luci-static/resources/view/homeproxy/status.js:249
 msgid "sing-box server"
 msgstr ""
 
