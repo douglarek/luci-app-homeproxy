@@ -138,7 +138,7 @@ return view.extend({
 		});
 
 		/* Homeproxy built-in rule-set */
-		const hp_rule_set = ['geoip-cn', 'geoip-private', 'geosite-cn', 'geosite-microsoft@cn', 'geoip-netflix', 'geosite-netflix'];
+		const hp_rule_set = ['hp_geoip_cn', 'hp_geoip_private', 'hp_geosite_cn', 'hp_geosite_microsoft_cn', 'hp_geoip_netflix', 'hp_geosite_netflix'];
 
 		s = m.section(form.NamedSection, 'config', 'homeproxy');
 
@@ -549,7 +549,7 @@ return view.extend({
 			delete this.vallist;
 
 			for (let i in hp_rule_set) {
-				this.value(hp_rule_set[i], hp_rule_set[i]);
+				this.value(hp_rule_set[i], hp_rule_set[i].replaceAll('_', '-'));
 			}
 
 			uci.sections(data[0], 'rule_set', (res) => {
@@ -914,7 +914,7 @@ return view.extend({
 			delete this.vallist;
 
 			for (let i in hp_rule_set) {
-				this.value(hp_rule_set[i], hp_rule_set[i]);
+				this.value(hp_rule_set[i], hp_rule_set[i].replaceAll('_', '-'));
 			}
 
 			uci.sections(data[0], 'rule_set', (res) => {

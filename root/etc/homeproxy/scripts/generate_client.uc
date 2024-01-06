@@ -297,6 +297,9 @@ function get_ruleset(cfg) {
 		return rs;
 	}
 
+	if (cfg in ['hp_geoip_cn', 'hp_geoip_private', 'hp_geosite_cn', 'hp_geosite_microsoft_cn', 'hp_geoip_netflix', 'hp_geosite_netflix']) {
+		return cfg;
+	}
 	const label = uci.get(uciconfig, cfg, 'label');
 	if (isEmpty(label))
 		die(sprintf("%s's label is missing, please check your configuration.", rs));
@@ -608,37 +611,37 @@ config.route = {
 	rule_set: [
 		{
 			"type": "remote",
-			"tag": "geosite-netflix",
+			"tag": "hp_geosite_netflix",
 			"format": "binary",
 			"url": "https://raw.githubusercontent.com/douglarek/sing-geosite/rule-set/geosite-netflix.srs"
 		},
 		{
 			"type": "remote",
-			"tag": "geoip-netflix",
+			"tag": "hp_geoip_netflix",
 			"format": "binary",
 			"url": "https://raw.githubusercontent.com/douglarek/sing-geoip/rule-set/geoip-netflix.srs"
 		},
 		{
 			"type": "remote",
-			"tag": "geosite-microsoft@cn",
+			"tag": "hp_geosite_microsoft_cn",
 			"format": "binary",
 			"url": "https://raw.githubusercontent.com/douglarek/sing-geosite/rule-set/geosite-microsoft@cn.srs"
 		},
 		{
 			"type": "remote",
-			"tag": "geosite-cn",
+			"tag": "hp_geosite_cn",
 			"format": "binary",
 			"url": "https://raw.githubusercontent.com/douglarek/sing-geosite/rule-set/geosite-cn.srs"
 		},
 		{
 			"type": "remote",
-			"tag": "geoip-cn",
+			"tag": "hp_geoip_cn",
 			"format": "binary",
 			"url": "https://raw.githubusercontent.com/douglarek/sing-geoip/rule-set/geoip-cn.srs"
 		},
 		{
 			"type": "remote",
-			"tag": "geoip-private",
+			"tag": "hp_geoip_private",
 			"format": "binary",
 			"url": "https://raw.githubusercontent.com/douglarek/sing-geoip/rule-set/geoip-private.srs"
 		}
@@ -720,12 +723,16 @@ uci.foreach(uciconfig, uciruleset, (cfg) => {
 		"download_detour": uci.get(uciconfig, cfg.outbound, 'label')
 	};
 
-	for (let i in rule_set_ori) {
-		if (i === cfg.label) {
+	let replaced = false;
+	for (let i = 0; i < rule_set_ori.length; i++) {
+		if (rule_set_ori[i].tag === cfg.label) {
 			config.route.rule_set[i] = rs;
-		} else {
-			push(config.route.rule_set, rs);
+			replaced = true;
+			break;
 		}
+	}
+	if (!replaced) {
+		push(config.route.rule_set, rs);
 	}
 });
 /* Rule set end */
