@@ -276,8 +276,6 @@ return view.extend({
 			so.value('mixed', _('Mixed'));
 			so.value('gvisor', _('gVisor'));
 		}
-		if (features.with_lwip)
-			so.value('lwip', _('LWIP'));
 		so.value('system', _('System'));
 		so.default = 'system';
 		so.depends('homeproxy.config.proxy_mode', 'redirect_tun');
@@ -289,8 +287,6 @@ return view.extend({
 				desc.innerHTML = _('Mixed <code>system</code> TCP stack and <code>gVisor</code> UDP stack.')
 			else if (value === 'gvisor')
 				desc.innerHTML = _('Based on google/gvisor.');
-			else if (value === 'lwip')
-				desc.innerHTML = _('Upstream archived. Not recommended.');
 			else if (value === 'system')
 				desc.innerHTML = _('Less compatibility and sometimes better performance.');
 		}
