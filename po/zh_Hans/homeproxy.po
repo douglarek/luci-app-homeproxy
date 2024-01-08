@@ -2688,9 +2688,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "LWIP"
-#~ msgstr "LWIP"
-
-#~ msgid "Upstream archived. Not recommended."
-#~ msgstr "上游已存档。不建议。"
