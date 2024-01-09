@@ -547,7 +547,7 @@ if (match(proxy_mode, /tun/))
 		type: 'tun',
 		tag: 'tun-in',
 
-		interface_name: tun_name,
+		interface_name: null,
 		inet4_address: tun_addr4,
 		inet6_address: (ipv6_support === '1') ? tun_addr6 : null,
 		mtu: strToInt(tun_mtu),
