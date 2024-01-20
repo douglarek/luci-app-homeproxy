@@ -622,11 +622,29 @@ return view.extend({
 
 		so = ss.option(form.Value, 'path', _('Path'),
 			_('File path of Rule Set.'));
+		so.datatype = 'file';
+		so.placeholder = '/etc/homeproxy/ruleset/example.json';
+		so.rmempty = false;
 		so.depends('type', 'local');
 		so.modalonly = true;
 
 		so = ss.option(form.Value, 'url', _('URL'),
 			_('Download URL of Rule Set.'));
+		so.validate = function(section_id, value) {
+			if (section_id && value) {
+				try {
+					var url = new URL(value);
+					if (!url.hostname)
+						return _('Expecting: %s').format(_('valid URL'));
+				}
+				catch(e) {
+					return _('Expecting: %s').format(_('valid URL'));
+				}
+			}
+
+			return true;
+		}
+		so.rmempty = false;
 		so.depends('type', 'remote');
 		so.modalonly = true;
 

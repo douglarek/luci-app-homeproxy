@@ -16,6 +16,7 @@ PKG_NAME:=luci-app-homeproxy
 define Package/luci-app-homeproxy/conffiles
 /etc/config/homeproxy
 /etc/homeproxy/certs/
+/etc/homeproxy/ruleset/
 /etc/homeproxy/resources/geoip.db
 /etc/homeproxy/resources/geoip.ver
 /etc/homeproxy/resources/geosite.db
