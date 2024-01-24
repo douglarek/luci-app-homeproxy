@@ -193,9 +193,7 @@ function parseShareLink(uri, features) {
 				config.grpc_servicename = params.get('serviceName');
 				break;
 			case 'ws':
-				/* We don't parse "host" param when TLS is enabled, as some providers are abusing it (host vs sni)
-				 * config.ws_host = params.get('host') ? decodeURIComponent(params.get('host')) : null;
-				 */
+				config.ws_host = params.get('host') ? decodeURIComponent(params.get('host')) : null;
 				config.ws_path = params.get('path') ? decodeURIComponent(params.get('path')) : null;
 				if (config.ws_path && config.ws_path.includes('?ed=')) {
 					config.websocket_early_data_header = 'Sec-WebSocket-Protocol';
@@ -272,8 +270,7 @@ function parseShareLink(uri, features) {
 				}
 				break;
 			case 'ws':
-				/* We don't parse "host" param when TLS is enabled, as some providers are abusing it (host vs sni) */
-				config.ws_host = (config.tls !== '1' && params.get('host')) ? decodeURIComponent(params.get('host')) : null;
+				config.ws_host = params.get('host') ? decodeURIComponent(params.get('host')) : null;
 				config.ws_path = params.get('path') ? decodeURIComponent(params.get('path')) : null;
 				if (config.ws_path && config.ws_path.includes('?ed=')) {
 					config.websocket_early_data_header = 'Sec-WebSocket-Protocol';
@@ -330,8 +327,7 @@ function parseShareLink(uri, features) {
 				}
 				break;
 			case 'ws':
-				/* We don't parse "host" param when TLS is enabled, as some providers are abusing it (host vs sni) */
-				config.ws_host = (config.tls !== '1') ? uri.host : null;
+				config.ws_host = uri.host;
 				config.ws_path = uri.path;
 				if (config.ws_path && config.ws_path.includes('?ed=')) {
 					config.websocket_early_data_header = 'Sec-WebSocket-Protocol';
