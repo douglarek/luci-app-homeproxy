@@ -2369,7 +2369,7 @@ msgstr "网址"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:528
 msgid "URLTest"
-msgstr "测速"
+msgstr "URLTest"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:864
 msgid "URLTest interval"
