@@ -2537,7 +2537,7 @@ msgstr "您只能设置一个服务器。它必须支持 TCP 查询。"
 #: htdocs/luci-static/resources/view/homeproxy/client.js:192
 #: htdocs/luci-static/resources/view/homeproxy/client.js:207
 msgid "You can only have two servers set at maximum."
-msgstr ""
+msgstr "您最多只能设置两个服务器。"
 
 #: htdocs/luci-static/resources/homeproxy.js:228
 msgid "Your %s was successfully uploaded. Size: %sB."
@@ -2693,6 +2693,3 @@ msgstr "有效端口值"
 #: htdocs/luci-static/resources/homeproxy.js:268
 msgid "valid uuid"
 msgstr "有效 uuid"
-
-#~ msgid "You can only have one server set."
-#~ msgstr "您只能设置一个服务器。"
