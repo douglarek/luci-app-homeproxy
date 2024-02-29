@@ -711,7 +711,7 @@ msgstr "启用 ECH"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1220
 msgid "Enable PQ signature schemes"
-msgstr "启用 PQ 签名方案。"
+msgstr "启用 PQ 签名方案"
 
 #: htdocs/luci-static/resources/view/homeproxy/node.js:1100
 #: htdocs/luci-static/resources/view/homeproxy/server.js:437
